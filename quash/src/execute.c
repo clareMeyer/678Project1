@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 
+#include <unistd.h>
+
 #include "quash.h"
 
 // Remove this and all expansion calls to it
@@ -28,12 +30,18 @@
 char* get_current_directory(bool* should_free) {
   // TODO: Get the current working directory. This will fix the prompt path.
   // HINT: This should be pretty simple
-  IMPLEMENT_ME();
-
+  //IMPLEMENT_ME();
   // Change this to true if necessary
-  *should_free = false;
+  *should_free = true;
 
-  return "get_current_directory()";
+  char* cmdbuf = malloc(64);
+  bzero(cmdbuf, 64);
+/*  sprintf(cmdbuf, getcwd());*/
+  getcwd(cmdbuf, 64);
+  return cmdbuf;
+
+
+  //return "get_current_directory()";
 }
 
 // Returns the value of an environment variable env_var
