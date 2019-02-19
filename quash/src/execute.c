@@ -51,12 +51,16 @@ const char* lookup_env(const char* env_var) {
   // to interpret variables from the command line and display the prompt
   // correctly
   // HINT: This should be pretty simple
-  IMPLEMENT_ME();
+  //IMPLEMENT_ME();
+  char* cmdbuf = malloc(64);
+  bzero(cmdbuf, 64);
+  getenv(cmdbuf);
+  return cmdbuf;
 
   // TODO: Remove warning silencers
-  (void) env_var; // Silence unused variable warning
+  //(void) env_var; // Silence unused variable warning
 
-  return "???";
+  //return "???";
 }
 
 // Check the status of background jobs
