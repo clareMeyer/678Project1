@@ -28,27 +28,41 @@
 
 
 /***************************************************************************
- * Queues (NEW!!!!)
+ * Job Queue (NEW!!!!)
  ***************************************************************************/
 // Processes PIDs queue
 IMPLEMENT_DEQUE_STRUCT(PIDDeque, pid_t);
 IMPLEMENT_DEQUE(PIDDeque, pid_t);
 
+// Job structure
+typedef struct Job {
+    int job_id;
+    char* commandline;
+    PIDDeque pid_list;
+} Job;
+
 // Job queue
 IMPLEMENT_DEQUE_STRUCT(JobDeque, Job);
 IMPLEMENT_DEQUE(JobDeque, Job);
 
-
-/***************************************************************************
- * Job structure (NEW!!!!)
- ***************************************************************************/
- typedef struct Job {
-     int job_id;
-     char* commandline;
-     PIDDeque pid_list;
- } Job;
-
 JobDeque jobsQueue;
+
+static Job _newJob(){
+    return (Job){
+        0,
+        get_command_string(),
+        new_PIDDeque()
+    }
+}
+
+// Environment that holds the pipes and a process
+typedef struct Environment {
+    int pipes[2][2];
+    Job job;
+} Environment;
+
+
+
 
 /***************************************************************************
  * Interface Functions
