@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/wait.h>
 #include "quash.h"
 #include "deque.h"
 
@@ -117,7 +118,35 @@ void check_jobs_bg_status() {
   // TODO: Check on the statuses of all processes belonging to all background
   // jobs. This function should remove jobs from the jobs queue once all
   // processes belonging to a job have completed.
-  IMPLEMENT_ME();
+  //IMPLEMENT_ME();
+
+  if(is_empty_JobDeque(&jobs)){
+    return;
+  };
+  size_t job_que_length = length_JobDeque(&jobs);
+  for(size_t i=0; i<job_que_length; i++){
+
+    Job current_job = pop_front_JobDeque(&jobs);
+    size_t p_que_length = length_PIDDeque(&current_job.pid_list);
+
+    for(size_t j=0; j<p_que_length; j++){
+      //grab the first process from list of processes instead of length
+      pid_t current_p = pop_front_PIDDeque(&current_job.pid_list);
+      int status;
+      pid_t after_p = waitpid(current_p, &status, WNOHANG);
+      if(after_p==0){
+        //need to push back because last process in the job
+        push_back_PIDDeque(&current_job.pid_list, current_p);
+      }
+      else if(after_p==-1){
+        //still have more process in the job
+      }
+      else if(after_p==current_p){
+        //this is when all jobs are implemented
+        print_job_bg_complete(current_job.job_id, current_p, current_job.commandline);
+      }
+    }
+  }
 
   // TODO: Once jobs are implemented, uncomment and fill the following line
   // print_job_bg_complete(job_id, pid, cmd);
