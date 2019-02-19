@@ -11,13 +11,11 @@
  * Included files
  ***************************************************************************/
 #include "execute.h"
-
 #include <stdio.h>
-
 //#include <unistd.h>
 #include <string.h>
-
 #include "quash.h"
+#include "deque.h"
 
 // Remove this and all expansion calls to it
 /**
@@ -28,7 +26,7 @@
 
 
 /***************************************************************************
- * Job Queue (NEW!!!!)
+ * Queue declarations (NEW!!!!)
  ***************************************************************************/
 // Processes PIDs queue
 IMPLEMENT_DEQUE_STRUCT(PIDDeque, pid_t);
@@ -45,16 +43,33 @@ typedef struct Job {
 IMPLEMENT_DEQUE_STRUCT(JobDeque, Job);
 IMPLEMENT_DEQUE(JobDeque, Job);
 
-JobDeque jobsQueue;
-
+/***************************************************************************
+ * Job structure (NEW!!!!)
+ ***************************************************************************/
+// Constructor
 static Job _newJob(){
     return (Job){
         0,
         get_command_string(),
-        new_PIDDeque()
-    }
+        new_PIDDeque(1),
+    };
 }
 
+// Destructor
+static void _destroyJob(Job job){
+    if(job.commandline != NULL)
+    {
+        free(job.commandline);
+    }
+    destroy_PIDDeque(&job.pid_list);
+}
+
+
+JobDeque jobs;
+
+/***************************************************************************
+ * Environment structure (NEW!!!!)
+ ***************************************************************************/
 // Environment that holds the pipes and a process
 typedef struct Environment {
     int pipes[2][2];
@@ -67,7 +82,6 @@ typedef struct Environment {
 /***************************************************************************
  * Interface Functions
  ***************************************************************************/
-
 // Return a string containing the current working directory.
 char* get_current_directory(bool* should_free) {
   // TODO: Get the current working directory. This will fix the prompt path.
@@ -142,12 +156,13 @@ void run_generic(GenericCommand cmd) {
   char* exec = cmd.args[0];
   char** args = cmd.args;
 
-  // TODO: Remove warning silencers
-  (void) exec; // Silence unused variable warning
-  (void) args; // Silence unused variable warning
-
-  // TODO: Implement run generic
-  IMPLEMENT_ME();
+  // // TODO: Remove warning silencers
+  // (void) exec; // Silence unused variable warning
+  // (void) args; // Silence unused variable warning
+  //
+  // // TODO: Implement run generic
+  // IMPLEMENT_ME();
+  execvp(exec, args);
 
   perror("ERROR: Failed to execute program");
 }
@@ -364,6 +379,14 @@ void create_process(CommandHolder holder) {
 void run_script(CommandHolder* holders) {
   if (holders == NULL)
     return;
+
+  // Create Job queue the first time run_script is run
+  static bool firstRun = true;
+  if(firstRun)
+  {
+      jobs = new_destructable_JobDeque(10,_destroyJob);
+      firstRun = false;
+  }
 
   check_jobs_bg_status();
 
