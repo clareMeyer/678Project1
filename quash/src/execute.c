@@ -11,7 +11,8 @@
 
 #include <stdio.h>
 
-//#include <unistd.h>
+#include <unistd.h>
+
 #include <string.h>
 
 #include "quash.h"
@@ -22,6 +23,42 @@
  */
 #define IMPLEMENT_ME()                                                  \
   fprintf(stderr, "IMPLEMENT ME: %s(line %d): %s()\n", __FILE__, __LINE__, __FUNCTION__)
+
+
+  /***************************************************************************
+   * Queues (NEW!!!!)
+   ***************************************************************************/
+  // Processes PIDs queue
+  IMPLEMENT_DEQUE_STRUCT(PIDDeque, pid_t);
+  IMPLEMENT_DEQUE(PIDDeque, pid_t);
+
+  /***************************************************************************
+   * Job structure (NEW!!!!)
+   ***************************************************************************/
+   typedef struct Job {
+       int job_id;
+       char* commandline;
+       PIDDeque pid_list;
+   } Job;
+
+   // Job queue
+   IMPLEMENT_DEQUE_STRUCT(JobDeque, Job);
+   IMPLEMENT_DEQUE(JobDeque, Job);
+
+  /*only store background jobs in this*/
+  /*every index of this is a one of those three jobs from above*/
+  JobDeque jobsQueue;
+
+  //if you need to create a job you call this, its like a constructor
+  /*initilize PIDDeque to 1*/
+  static Job _new_job(){
+    return(Job){
+      0,
+      get_command_string(),
+      new_PIDDeque(1),
+    };
+  }
+
 
 /***************************************************************************
  * Interface Functions
@@ -305,6 +342,8 @@ void parent_run_command(Command cmd) {
  *
  * @sa Command CommandHolder
  */
+ //going to need to take in a second thing, could be a job or a struct that
+ //stores job and other information
 void create_process(CommandHolder holder) {
   // Read the flags field from the parser
   bool p_in  = holder.flags & PIPE_IN;
@@ -313,6 +352,17 @@ void create_process(CommandHolder holder) {
   bool r_out = holder.flags & REDIRECT_OUT;
   bool r_app = holder.flags & REDIRECT_APPEND; // This can only be true if r_out
                                                // is true
+
+  //do two pipes then you can have infinte number of processes
+  //0 is read in 1 is write out
+  //two pipes each with read and write
+  //pipes[0][1] is pipe 0 write it
+  //alternate pipes so after you read from pipe 1 go ahead and write to it
+  //keep track of what you used last somehow, global variable
+
+  //struct holds pipe job and intager for number of pipes used and mod 2 to figure out which pipe
+
+  pipes[2][2];
 
   // TODO: Remove warning silencers
   (void) p_in;  // Silence unused variable warning
