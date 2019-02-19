@@ -7,14 +7,15 @@
  * @note As you add things to this file you may want to change the method signature
  */
 
+/***************************************************************************
+ * Included files
+ ***************************************************************************/
 #include "execute.h"
-
 #include <stdio.h>
-
 //#include <unistd.h>
 #include <string.h>
-
 #include "quash.h"
+#include "deque.h"
 
 // Remove this and all expansion calls to it
 /**
@@ -23,10 +24,64 @@
 #define IMPLEMENT_ME()                                                  \
   fprintf(stderr, "IMPLEMENT ME: %s(line %d): %s()\n", __FILE__, __LINE__, __FUNCTION__)
 
+
+/***************************************************************************
+ * Queue declarations (NEW!!!!)
+ ***************************************************************************/
+// Processes PIDs queue
+IMPLEMENT_DEQUE_STRUCT(PIDDeque, pid_t);
+IMPLEMENT_DEQUE(PIDDeque, pid_t);
+
+// Job structure
+typedef struct Job {
+    int job_id;
+    char* commandline;
+    PIDDeque pid_list;
+} Job;
+
+// Job queue
+IMPLEMENT_DEQUE_STRUCT(JobDeque, Job);
+IMPLEMENT_DEQUE(JobDeque, Job);
+
+/***************************************************************************
+ * Job structure (NEW!!!!)
+ ***************************************************************************/
+// Constructor
+static Job _newJob(){
+    return (Job){
+        0,
+        get_command_string(),
+        new_PIDDeque(1),
+    };
+}
+
+// Destructor
+static void _destroyJob(Job job){
+    if(job.commandline != NULL)
+    {
+        free(job.commandline);
+    }
+    destroy_PIDDeque(&job.pid_list);
+}
+
+
+JobDeque jobs;
+
+/***************************************************************************
+ * Environment structure (NEW!!!!)
+ ***************************************************************************/
+// Environment that holds the pipes and a process
+typedef struct Environment {
+    int pipes[2][2];
+    Job job;
+} Environment;
+
+
+
+
 /***************************************************************************
  * Interface Functions
  ***************************************************************************/
-
 // Return a string containing the current working directory.
 char* get_current_directory(bool* should_free) {
   // TODO: Get the current working directory. This will fix the prompt path.
@@ -51,16 +106,10 @@ const char* lookup_env(const char* env_var) {
   // to interpret variables from the command line and display the prompt
   // correctly
   // HINT: This should be pretty simple
-  //IMPLEMENT_ME();
-  char* cmdbuf = malloc(64);
-  bzero(cmdbuf, 64);
-  getenv(cmdbuf);
-  return cmdbuf;
-
   // TODO: Remove warning silencers
   //(void) env_var; // Silence unused variable warning
 
-  //return "???";
+  return getenv(env_var);
 }
 
 // Check the status of background jobs
@@ -105,12 +154,13 @@ void run_generic(GenericCommand cmd) {
   char* exec = cmd.args[0];
   char** args = cmd.args;
 
-  // TODO: Remove warning silencers
-  (void) exec; // Silence unused variable warning
-  (void) args; // Silence unused variable warning
-
-  // TODO: Implement run generic
-  IMPLEMENT_ME();
+  // // TODO: Remove warning silencers
+  // (void) exec; // Silence unused variable warning
+  // (void) args; // Silence unused variable warning
+  //
+  // // TODO: Implement run generic
+  // IMPLEMENT_ME();
+  execvp(exec, args);
 
   perror("ERROR: Failed to execute program");
 }
@@ -327,6 +377,14 @@ void create_process(CommandHolder holder) {
 void run_script(CommandHolder* holders) {
   if (holders == NULL)
     return;
+
+  // Create Job queue the first time run_script is run
+  static bool firstRun = true;
+  if(firstRun)
+  {
+      jobs = new_destructable_JobDeque(10,_destroyJob);
+      firstRun = false;
+  }
 
   check_jobs_bg_status();
 
