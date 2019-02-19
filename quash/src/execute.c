@@ -7,6 +7,9 @@
  * @note As you add things to this file you may want to change the method signature
  */
 
+/***************************************************************************
+ * Included files
+ ***************************************************************************/
 #include "execute.h"
 
 #include <stdio.h>
@@ -22,6 +25,30 @@
  */
 #define IMPLEMENT_ME()                                                  \
   fprintf(stderr, "IMPLEMENT ME: %s(line %d): %s()\n", __FILE__, __LINE__, __FUNCTION__)
+
+
+/***************************************************************************
+ * Queues (NEW!!!!)
+ ***************************************************************************/
+// Processes PIDs queue
+IMPLEMENT_DEQUE_STRUCT(PIDDeque, pid_t);
+IMPLEMENT_DEQUE(PIDDeque, pid_t);
+
+// Job queue
+IMPLEMENT_DEQUE_STRUCT(JobDeque, Job);
+IMPLEMENT_DEQUE(JobDeque, Job);
+
+
+/***************************************************************************
+ * Job structure (NEW!!!!)
+ ***************************************************************************/
+ typedef struct Job {
+     int job_id;
+     char* commandline;
+     PIDDeque pid_list;
+ } Job;
+
+JobDeque jobsQueue;
 
 /***************************************************************************
  * Interface Functions
@@ -51,12 +78,12 @@ const char* lookup_env(const char* env_var) {
   // to interpret variables from the command line and display the prompt
   // correctly
   // HINT: This should be pretty simple
-  IMPLEMENT_ME();
+  // IMPLEMENT_ME();
+  //
+  // // TODO: Remove warning silencers
+  // (void) env_var; // Silence unused variable warning
 
-  // TODO: Remove warning silencers
-  (void) env_var; // Silence unused variable warning
-
-  return "???";
+  return getenv(env_var);
 }
 
 // Check the status of background jobs
