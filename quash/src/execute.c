@@ -108,6 +108,7 @@ void run_generic(GenericCommand cmd) {
   //execute the program, exec is the executable file
   //args is the array of commands
   //execvp(const char *file, char *const argv[])
+  //only returns if an error occurs
   execvp(exec, args);
 
   // TODO: Remove warning silencers
