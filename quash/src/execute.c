@@ -105,12 +105,17 @@ void run_generic(GenericCommand cmd) {
   char* exec = cmd.args[0];
   char** args = cmd.args;
 
+  //execute the program, exec is the executable file
+  //args is the array of commands
+  //execvp(const char *file, char *const argv[])
+  execvp(exec, args);
+
   // TODO: Remove warning silencers
-  (void) exec; // Silence unused variable warning
-  (void) args; // Silence unused variable warning
+  //(void) exec; // Silence unused variable warning
+  //(void) args; // Silence unused variable warning
 
   // TODO: Implement run generic
-  IMPLEMENT_ME();
+  //IMPLEMENT_ME();
 
   perror("ERROR: Failed to execute program");
 }
