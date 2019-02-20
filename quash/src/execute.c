@@ -77,7 +77,15 @@ typedef struct Environment {
     Job job;
 } Environment;
 
+// Constructor (initializer)
+static void _newEnvironment(Environment* e){
+    e->job = _newJob();
+}
 
+// Destructor
+static void _destroyEnvironment(Environment* env){
+    _destroyJob(env->job)
+}
 
 
 /***************************************************************************
@@ -424,6 +432,9 @@ void run_script(CommandHolder* holders) {
   }
 
   CommandType type;
+  // Declare environment of the command
+  Environment envr;
+  _newEnvironment(&envr);
 
   // Run all commands in the `holder` array
   for (int i = 0; (type = get_command_holder_type(holders[i])) != EOC; ++i)
@@ -432,7 +443,13 @@ void run_script(CommandHolder* holders) {
   if (!(holders[0].flags & BACKGROUND)) {
     // Not a background Job
     // TODO: Wait for all processes under the job to complete
-    IMPLEMENT_ME();
+    // QUESTION: We have to destroy the process because it is completed right? (so pop them)
+    while (!is_empty_PIDDeque(&jobs.pid_list)) {
+        pid_t current_p = pop_front_PIDDeque(&current_job.pid_list);
+        int status=0;
+        waitpid(current_p, &status, WNOHANG);
+    }
+    destroy_PIDDeque(&jobs.pid_list);
   }
   else {
     // A background job.
