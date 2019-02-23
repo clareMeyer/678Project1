@@ -204,15 +204,21 @@ void run_generic(GenericCommand cmd) {
 
 // Print strings
 void run_echo(EchoCommand cmd) {
+  // FINISHED!!! (think so)
   // Print an array of strings. The args array is a NULL terminated (last
   // string is always NULL) list of strings.
   char** str = cmd.args;
 
   // TODO: Remove warning silencers
-  (void) str; // Silence unused variable warning
+  // (void) str; // Silence unused variable warning
 
   // TODO: Implement echo
-  IMPLEMENT_ME();
+  // IMPLEMENT_ME();
+  while(str[i]!=NULL){
+      printf("%s",str[i]);
+      i++;
+  }
+  printf("\n");
 
   // Flush the buffer before returning
   fflush(stdout);
@@ -220,17 +226,21 @@ void run_echo(EchoCommand cmd) {
 
 // Sets an environment variable
 void run_export(ExportCommand cmd) {
+  // FINISHED!!! (think so)
   // Write an environment variable
   const char* env_var = cmd.env_var;
   const char* val = cmd.val;
 
   // TODO: Remove warning silencers
-  (void) env_var; // Silence unused variable warning
-  (void) val;     // Silence unused variable warning
+  // (void) env_var; // Silence unused variable warning
+  // (void) val;     // Silence unused variable warning
 
   // TODO: Implement export.
+
   // HINT: This should be quite simple.
-  IMPLEMENT_ME();
+  // IMPLEMENT_ME();
+  ////////////////////////////////// DOUBLE CHECK setenv(3), why last parameter is 1
+  setenv(env_var,val,1);
 }
 
 // Changes the current working directory
@@ -250,6 +260,9 @@ void run_cd(CDCommand cmd) {
   // directory and optionally update OLD_PWD environment variable to be the old
   // working directory.
   IMPLEMENT_ME();
+  // chdir(2)
+
+
 }
 
 // Sends a signal to all processes contained in a job
@@ -277,9 +290,15 @@ void run_pwd() {
 
 // Prints all background jobs currently in the job list to stdout
 void run_jobs() {
+  // FINISHED!!! (think so)
   // TODO: Print background jobs
-  IMPLEMENT_ME();
-
+  // IMPLEMENT_ME();
+  size_t jobs_length = length_JobDeque(&jobs);
+  for(size_t i=0; i<jobs_length; i++){
+    Job current_job = pop_front_JobDeque(&jobs);
+    print_job(current_job.job_id, peek_front_JobDeque(&jobs.pid_list), current_job.commandline);
+    push_back_JobDeque(&jobs,current_job);
+  }
   // Flush the buffer before returning
   fflush(stdout);
 }
@@ -386,7 +405,7 @@ void parent_run_command(Command cmd) {
  *
  * @sa Command CommandHolder
  */
-void create_process(CommandHolder holder) {
+void create_process(CommandHolder holder, int i) {
   // Read the flags field from the parser
   bool p_in  = holder.flags & PIPE_IN;
   bool p_out = holder.flags & PIPE_OUT;
@@ -404,6 +423,34 @@ void create_process(CommandHolder holder) {
 
   // TODO: Setup pipes, redirects, and new process
   IMPLEMENT_ME();
+    // STARTED IMPLEMENTATION. JUST BASIC STRUCTURE. NOT WORKING (YET)
+    pid_1 = fork();
+    if (pid_1 == 0) {
+        if(p_in){
+            // Read from pipe
+            dup2(pipes[(i-1)%2][0],STDIN_FILENO);
+        }
+
+        if(p_out){
+            // Write to pipe
+            dup2(pipes[(i-1)%2][1],STDIN_FILENO);
+        }
+
+        if(r_in){
+            // Read from standard in
+        }
+
+        if(r_out){
+            // Write to standard out truncating the original file
+            if(r_app){
+                // Write to the standard out appending its output
+
+            }
+        }
+        child_run_command(holder.cmd);
+        exit(0);
+    }
+    parent_run_command(holder.cmd);
 
   //parent_run_command(holder.cmd); // This should be done in the parent branch of
                                   // a fork
@@ -438,7 +485,7 @@ void run_script(CommandHolder* holders) {
 
   // Run all commands in the `holder` array
   for (int i = 0; (type = get_command_holder_type(holders[i])) != EOC; ++i)
-    create_process(holders[i]);
+    create_process(holders[i],i);
 
   if (!(holders[0].flags & BACKGROUND)) {
     // Not a background Job
