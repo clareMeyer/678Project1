@@ -1,0 +1,39 @@
+==8383== Memcheck, a memory error detector
+==8383== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==8383== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==8383== Command: /home/c111m575/EECS678_Lab/Project1/quash/quash
+==8383== 
+syntax error: Line 3
+==8383== 
+==8383== HEAP SUMMARY:
+==8383==     in use at exit: 76 bytes in 3 blocks
+==8383==   total heap usage: 15 allocs, 12 frees, 1,068,994 bytes allocated
+==8383== 
+==8383== 8 bytes in 1 blocks are definitely lost in loss record 1 of 3
+==8383==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8383==    by 0x401FB1: __on_push_PIDDeque (execute.c:37)
+==8383==    by 0x4021C1: push_back_PIDDeque (execute.c:37)
+==8383==    by 0x40440E: create_process (execute.c:481)
+==8383==    by 0x4046FD: run_script (execute.c:557)
+==8383==    by 0x4015B0: main (quash.c:132)
+==8383== 
+==8383== 12 bytes in 1 blocks are definitely lost in loss record 2 of 3
+==8383==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8383==    by 0x4EC5489: strdup (strdup.c:42)
+==8383==    by 0x4014D4: get_command_string (quash.c:88)
+==8383==    by 0x403ABF: _newJob (execute.c:57)
+==8383==    by 0x403B89: _newEnvironment (execute.c:85)
+==8383==    by 0x404640: run_script (execute.c:541)
+==8383==    by 0x4015B0: main (quash.c:132)
+==8383== 
+==8383== LEAK SUMMARY:
+==8383==    definitely lost: 20 bytes in 2 blocks
+==8383==    indirectly lost: 0 bytes in 0 blocks
+==8383==      possibly lost: 0 bytes in 0 blocks
+==8383==    still reachable: 56 bytes in 1 blocks
+==8383==         suppressed: 0 bytes in 0 blocks
+==8383== Reachable blocks (those to which a pointer was found) are not shown.
+==8383== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==8383== 
+==8383== For counts of detected and suppressed errors, rerun with: -v
+==8383== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)

@@ -151,10 +151,14 @@ void check_jobs_bg_status() {
       }
       else if(after_p==-1){
         //still have more process in the job
+                ////////NOT SURE
+        //push_back_JobDeque(&jobs, current_job);
       }
       else if(after_p==current_p){
         //this is when all jobs are implemented
         print_job_bg_complete(current_job.job_id, current_p, current_job.commandline);
+                ////////NOT SURE
+        //destroy_JobDeque(&jobs);
       }
     }
   }
@@ -217,12 +221,19 @@ void run_echo(EchoCommand cmd) {
 
   // TODO: Implement echo
   // IMPLEMENT_ME();
+  //*********************changed to for loop
+/*  for(int i=0; str[i]!=NULL; i++){
+    printf("%s ", str[i]);
+  }
+  printf("\n");*/
+
   int i=0;
   while(str[i]!=NULL){
-      printf("%s",str[i]);
+      printf("%s ",str[i]);
       i++;
   }
   printf("\n");
+
 
   // Flush the buffer before returning
   fflush(stdout);
@@ -296,13 +307,9 @@ void run_kill(KillCommand cmd) {
         //think we have to push back that its killed?
         push_back_PIDDeque(&current_job.pid_list, current_p);
       }
-      //push job back to que
-      push_back_JobDeque(&jobs, current_job);
     }
-    else{
-      //just put the job back on the que because its not the job you're looking for
-      push_back_JobDeque(&jobs, current_job);
-    }
+    //just put the job back on the que because its not the job you're looking for
+    push_back_JobDeque(&jobs, current_job);
   }
 
 
@@ -562,6 +569,7 @@ void run_script(CommandHolder* holders) {
     // A background job.
     // TODO: Push the new job to the job queue
     IMPLEMENT_ME();
+    //push_back_JobDeque(&)
 
     // TODO: Once jobs are implemented, uncomment and fill the following line
     // print_job_bg_start(job_id, pid, cmd);
