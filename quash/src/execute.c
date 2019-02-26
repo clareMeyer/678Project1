@@ -138,7 +138,7 @@ void check_jobs_bg_status() {
     size_t p_que_length = length_PIDDeque(&current_job.pid_list);
 
     for(size_t j=0; j<p_que_length; j++){
-      //grab the first process from list of processes instead of length
+      //grab the first process from list of processes
       pid_t current_p = pop_front_PIDDeque(&current_job.pid_list);
       int status;
       pid_t after_p = waitpid(current_p, &status, WNOHANG);
@@ -288,13 +288,17 @@ void run_kill(KillCommand cmd) {
       for(int j=0; j<p_que_length; j++){
         pid_t current_p = pop_front_PIDDeque(&current_job.pid_list);
         //check this because not sure what inputs it requires for sure
+        //kill takes a proccess and a signal, signal declared above
         kill(current_p, signal);
-        //why would we push the process back onto the que?
+        //think we have to push back that its killed?
+        push_back_PIDDeque(&current_job.pid_list, current_p);
       }
-      //I think we have to push the process back on here
+      //push job back to que
+      push_back_JobDeque(&jobs, current_job);
     }
     else{
-      //just put the job back on the stack
+      //just put the job back on the que because its not the job you're looking for
+      push_back_JobDeque(&jobs, current_job);
     }
   }
 
