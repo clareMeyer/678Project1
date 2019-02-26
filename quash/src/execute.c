@@ -430,29 +430,48 @@ void create_process(CommandHolder holder, int i, Environment* envr) {
     // TODO: Setup pipes, redirects, and new process
     // IMPLEMENT_ME();
     // STARTED IMPLEMENTATION. JUST BASIC STRUCTURE. NOT WORKING (YET)
-    pid_t pid_1;
-    pid_1 = fork();
-    if (pid_1 == 0) {
+
+    // create pipe if its p_out
+    if(p_out)
+    {
+        pipe(envr.pipe[i-1)%2]);
+    }
+
+    pid_t pid_child;
+    pid_child = fork();
+    push_back_PIDDeque(&envr->job.pid_list,pid_child);
+
+    if (pid_child == 0) {
         if(p_in){
             // Read from pipe
             dup2(envr->pipes[(i-1)%2][0],STDIN_FILENO);
+            close(envr->pipes[(i-1)%2][1]);
         }
 
         if(p_out){
             // Write to pipe
-            dup2(envr->pipes[(i-1)%2][1],STDIN_FILENO);
+            dup2(envr->pipes[(i-1)%2][1],STDOUT_FILENO);
+            close(envr->pipes[(i-1)%2][0]);
         }
 
         if(r_in){
             // Read from standard in
+            int fileIn = open(holder.redirect_in,O_RDONLY,00700);
+            dup2(fileIn,STDIN_FILENO);
+            close(fileIn);
         }
 
         if(r_out){
-            // Write to standard out truncating the original file
             if(r_app){
                 // Write to the standard out appending its output
-
+                int fileOut = open(holder.redirect_out,O_WRONLY|O_APPEND,0664); // 6 read write, 7 readwrite execute
             }
+            else{
+                // Write to standard out truncating the original file
+                int fileOut = open(holder.redirect_out,O_WRONLY|O_TRUNC,0664);
+            }
+            dup2(fileOut,STDOUT_FILENO);
+            close(fileOut);
         }
         child_run_command(holder.cmd);
         exit(0);
@@ -477,13 +496,9 @@ void run_script(CommandHolder* holders) {
       firstRun = false;
   }
 
-
-
   // Declare environment of the command. THe environment creates the pipes and a job. The job creates the pid_list que
   Environment envr;
   _newEnvironment(&envr);
-  // NO NEED TO CREATE JOB BECAUSE IT IS CREATED INSIDE THE ENVIRONMENT. Create job with job_id, command line and pid_list
-  // Job current_job;  // should I call _newJob ???? newJob creates the pid_list que
 
 
   check_jobs_bg_status();
