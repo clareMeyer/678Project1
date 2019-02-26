@@ -557,13 +557,25 @@ void run_script(CommandHolder* holders) {
         int status=0;
         waitpid(current_process, &status, WNOHANG);
     }
+    free(envr.job.commandline);
+    destroy_PIDDeque(&envr.job.pid_list);
   }
   else {
     // A background job.
     // TODO: Push the new job to the job queue
-    IMPLEMENT_ME();
+    // IMPLEMENT_ME();
+    if(is_empty_JobDeque(&jobs))
+    {
+        envr.job.job_id = 1;
+    }
+    else
+    {
+        envr.job.job_id = peek_back_JobDeque(&jobs).job_id + 1;
+    }
+
+    push_back_JobDeque(&jobs,envr.job);
 
     // TODO: Once jobs are implemented, uncomment and fill the following line
-    // print_job_bg_start(job_id, pid, cmd);
+    print_job_bg_start(envr.job.job_id, peek_front_PIDDeque(&envr.job.pid_list), envr.job.commandline);
   }
 }
