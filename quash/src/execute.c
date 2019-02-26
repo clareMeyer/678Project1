@@ -271,8 +271,32 @@ void run_kill(KillCommand cmd) {
   int job_id = cmd.job;
 
   // TODO: Remove warning silencers
-  (void) signal; // Silence unused variable warning
-  (void) job_id; // Silence unused variable warning
+  //(void) signal; // Silence unused variable warning
+  //(void) job_id; // Silence unused variable warning
+
+  //run loop that kills jobs
+    //run loop that kills processes
+  size_t job_que_length = length_JobDeque(&jobs);
+  for(int i=0; i<job_que_length; i++){
+    //pop the first job
+    Job current_job = pop_front_JobDeque(&jobs);
+
+    if(job_id == current_job.job_id){
+      size_t p_que_length = length_PIDDeque(&current_job.pid_list);
+      //loop through the processes in the current job
+      for(int j=0; j<p_que_length; j++){
+        pid_t current_p = pop_front_PIDDeque(&current_job.pid_list);
+        //check this because not sure what inputs it requires for sure
+        kill(current_p, signal);
+        //why would we push the process back onto the que?
+      }
+      //I think we have to push the process back on here
+    }
+    else{
+      //just put the job back on the stack
+    }
+  }
+
 
   // TODO: Kill all processes associated with a background job
   IMPLEMENT_ME();
