@@ -17,6 +17,9 @@
 #include <sys/wait.h>
 #include "quash.h"
 #include "deque.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 // Remove this and all expansion calls to it
 /**
@@ -445,11 +448,11 @@ void create_process(CommandHolder holder, int i, Environment* envr) {
                                                // is true
 
     // TODO: Remove warning silencers
-    (void) p_in;  // Silence unused variable warning
-    (void) p_out; // Silence unused variable warning
-    (void) r_in;  // Silence unused variable warning
-    (void) r_out; // Silence unused variable warning
-    (void) r_app; // Silence unused variable warning
+    // (void) p_in;  // Silence unused variable warning
+    // (void) p_out; // Silence unused variable warning
+    // (void) r_in;  // Silence unused variable warning
+    // (void) r_out; // Silence unused variable warning
+    // (void) r_app; // Silence unused variable warning
 
     // TODO: Setup pipes, redirects, and new process
     // IMPLEMENT_ME();
@@ -458,7 +461,7 @@ void create_process(CommandHolder holder, int i, Environment* envr) {
     // create pipe if its p_out
     if(p_out)
     {
-        pipe(envr.pipe[i-1)%2]);
+        pipe(envr->pipes[i%2]);
     }
 
     pid_t pid_child;
@@ -474,8 +477,8 @@ void create_process(CommandHolder holder, int i, Environment* envr) {
 
         if(p_out){
             // Write to pipe
-            dup2(envr->pipes[(i-1)%2][1],STDOUT_FILENO);
-            close(envr->pipes[(i-1)%2][0]);
+            dup2(envr->pipes[i%2][1],STDOUT_FILENO);
+            close(envr->pipes[i%2][0]);
         }
 
         if(r_in){
@@ -486,13 +489,14 @@ void create_process(CommandHolder holder, int i, Environment* envr) {
         }
 
         if(r_out){
+            int fileOut;
             if(r_app){
                 // Write to the standard out appending its output
-                int fileOut = open(holder.redirect_out,O_WRONLY|O_APPEND,0664); // 6 read write, 7 readwrite execute
+                fileOut = open(holder.redirect_out,O_WRONLY|O_APPEND,0664); // 6 read write, 7 readwrite execute
             }
             else{
                 // Write to standard out truncating the original file
-                int fileOut = open(holder.redirect_out,O_WRONLY|O_TRUNC,0664);
+                fileOut = open(holder.redirect_out,O_WRONLY|O_TRUNC,0664);
             }
             dup2(fileOut,STDOUT_FILENO);
             close(fileOut);
