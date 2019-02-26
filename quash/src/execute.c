@@ -84,7 +84,7 @@ static void _newEnvironment(Environment* e){
 
 // Destructor
 static void _destroyEnvironment(Environment* env){
-    _destroyJob(env->job)
+    _destroyJob(env->job);
 }
 
 
@@ -214,6 +214,7 @@ void run_echo(EchoCommand cmd) {
 
   // TODO: Implement echo
   // IMPLEMENT_ME();
+  int i=0;
   while(str[i]!=NULL){
       printf("%s",str[i]);
       i++;
@@ -255,14 +256,14 @@ void run_cd(CDCommand cmd) {
   }
 
   // TODO: Change directory
+  chdir(dir);
 
   // TODO: Update the PWD environment variable to be the new current working
   // directory and optionally update OLD_PWD environment variable to be the old
   // working directory.
-  IMPLEMENT_ME();
-  // chdir(2)
-
-
+  // IMPLEMENT_ME();
+  setenv("OLD_PWD",lookup_env("PWD"),1);
+  setenv("PWD",dir,1);
 }
 
 // Sends a signal to all processes contained in a job
@@ -282,8 +283,10 @@ void run_kill(KillCommand cmd) {
 // Prints the current working directory to stdout
 void run_pwd() {
   // TODO: Print the current working directory
-  IMPLEMENT_ME();
-
+  // IMPLEMENT_ME();
+  bool should_free = false;
+  char * cwd = get_current_directory(&should_free);
+  fprintf(stdout, "%s\n", cwd );
   // Flush the buffer before returning
   fflush(stdout);
 }
@@ -295,8 +298,11 @@ void run_jobs() {
   // IMPLEMENT_ME();
   size_t jobs_length = length_JobDeque(&jobs);
   for(size_t i=0; i<jobs_length; i++){
+     // Pop front job to get its values
     Job current_job = pop_front_JobDeque(&jobs);
-    print_job(current_job.job_id, peek_front_JobDeque(&jobs.pid_list), current_job.commandline);
+    // Prints the job id number, the process id of the first process belonging to the Job, and the command string associated with this job
+    print_job(current_job.job_id, peek_front_PIDDeque(&current_job.pid_list), current_job.commandline);
+    // Push the job to the back
     push_back_JobDeque(&jobs,current_job);
   }
   // Flush the buffer before returning
@@ -405,35 +411,36 @@ void parent_run_command(Command cmd) {
  *
  * @sa Command CommandHolder
  */
-void create_process(CommandHolder holder, int i) {
-  // Read the flags field from the parser
-  bool p_in  = holder.flags & PIPE_IN;
-  bool p_out = holder.flags & PIPE_OUT;
-  bool r_in  = holder.flags & REDIRECT_IN;
-  bool r_out = holder.flags & REDIRECT_OUT;
-  bool r_app = holder.flags & REDIRECT_APPEND; // This can only be true if r_out
+void create_process(CommandHolder holder, int i, Environment* envr) {
+    // Read the flags field from the parser
+    bool p_in  = holder.flags & PIPE_IN;
+    bool p_out = holder.flags & PIPE_OUT;
+    bool r_in  = holder.flags & REDIRECT_IN;
+    bool r_out = holder.flags & REDIRECT_OUT;
+    bool r_app = holder.flags & REDIRECT_APPEND; // This can only be true if r_out
                                                // is true
 
-  // TODO: Remove warning silencers
-  (void) p_in;  // Silence unused variable warning
-  (void) p_out; // Silence unused variable warning
-  (void) r_in;  // Silence unused variable warning
-  (void) r_out; // Silence unused variable warning
-  (void) r_app; // Silence unused variable warning
+    // TODO: Remove warning silencers
+    (void) p_in;  // Silence unused variable warning
+    (void) p_out; // Silence unused variable warning
+    (void) r_in;  // Silence unused variable warning
+    (void) r_out; // Silence unused variable warning
+    (void) r_app; // Silence unused variable warning
 
-  // TODO: Setup pipes, redirects, and new process
-  IMPLEMENT_ME();
+    // TODO: Setup pipes, redirects, and new process
+    // IMPLEMENT_ME();
     // STARTED IMPLEMENTATION. JUST BASIC STRUCTURE. NOT WORKING (YET)
+    pid_t pid_1;
     pid_1 = fork();
     if (pid_1 == 0) {
         if(p_in){
             // Read from pipe
-            dup2(pipes[(i-1)%2][0],STDIN_FILENO);
+            dup2(envr->pipes[(i-1)%2][0],STDIN_FILENO);
         }
 
         if(p_out){
             // Write to pipe
-            dup2(pipes[(i-1)%2][1],STDIN_FILENO);
+            dup2(envr->pipes[(i-1)%2][1],STDIN_FILENO);
         }
 
         if(r_in){
@@ -466,9 +473,18 @@ void run_script(CommandHolder* holders) {
   static bool firstRun = true;
   if(firstRun)
   {
-      jobs = new_destructable_JobDeque(10,_destroyJob);
+      jobs = new_destructable_JobDeque(1,_destroyJob);
       firstRun = false;
   }
+
+
+
+  // Declare environment of the command. THe environment creates the pipes and a job. The job creates the pid_list que
+  Environment envr;
+  _newEnvironment(&envr);
+  // NO NEED TO CREATE JOB BECAUSE IT IS CREATED INSIDE THE ENVIRONMENT. Create job with job_id, command line and pid_list
+  // Job current_job;  // should I call _newJob ???? newJob creates the pid_list que
+
 
   check_jobs_bg_status();
 
@@ -479,24 +495,21 @@ void run_script(CommandHolder* holders) {
   }
 
   CommandType type;
-  // Declare environment of the command
-  Environment envr;
-  _newEnvironment(&envr);
+
 
   // Run all commands in the `holder` array
   for (int i = 0; (type = get_command_holder_type(holders[i])) != EOC; ++i)
-    create_process(holders[i],i);
+    create_process(holders[i],i,&envr);
 
   if (!(holders[0].flags & BACKGROUND)) {
     // Not a background Job
     // TODO: Wait for all processes under the job to complete
-    // QUESTION: We have to destroy the process because it is completed right? (so pop them)
-    while (!is_empty_PIDDeque(&jobs.pid_list)) {
-        pid_t current_p = pop_front_PIDDeque(&current_job.pid_list);
+    // QUESTION: We have to destroy the process because it is completed right? (so pop them)   WRONG!!!!!!!!!!!!!!!!!!!!!!!!!
+    while (!is_empty_PIDDeque(&envr.job.pid_list)) {
+        pid_t current_process = pop_front_PIDDeque(&envr.job.pid_list);
         int status=0;
-        waitpid(current_p, &status, WNOHANG);
+        waitpid(current_process, &status, WNOHANG);
     }
-    destroy_PIDDeque(&jobs.pid_list);
   }
   else {
     // A background job.
