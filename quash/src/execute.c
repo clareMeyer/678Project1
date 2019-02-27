@@ -497,13 +497,13 @@ void create_process(CommandHolder holder, int i, Environment* envr) {
         if(p_in){
             // Read from pipe
             dup2(envr->pipes[(i-1)%2][0],STDIN_FILENO);
-            close(envr->pipes[(i-1)%2][1]);
+            close(envr->pipes[(i-1)%2][0]);
         }
 
         if(p_out){
             // Write to pipe
             dup2(envr->pipes[i%2][1],STDOUT_FILENO);
-            close(envr->pipes[i%2][0]);
+            close(envr->pipes[i%2][1]);
         }
 
         if(r_in){
