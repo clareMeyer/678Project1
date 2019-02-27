@@ -508,7 +508,7 @@ void create_process(CommandHolder holder, int i, Environment* envr) {
 
         if(r_in){
             // Read from standard in
-            int fileIn = open(holder.redirect_in,O_RDONLY,00700);
+            int fileIn = open(holder.redirect_in,O_RDONLY,0664);
             dup2(fileIn,STDIN_FILENO);
             close(fileIn);
         }
@@ -517,11 +517,11 @@ void create_process(CommandHolder holder, int i, Environment* envr) {
             int fileOut;
             if(r_app){
                 // Write to the standard out appending its output
-                fileOut = open(holder.redirect_out,O_WRONLY|O_APPEND,0664); // 6 read write, 7 readwrite execute
+                fileOut = open(holder.redirect_out,O_CREAT|O_WRONLY|O_APPEND,0664); // 6 read write, 7 readwrite execute
             }
             else{
                 // Write to standard out truncating the original file
-                fileOut = open(holder.redirect_out,O_WRONLY|O_TRUNC,0664);
+                fileOut = open(holder.redirect_out,O_CREAT|O_WRONLY|O_TRUNC,0664);
             }
             dup2(fileOut,STDOUT_FILENO);
             close(fileOut);
