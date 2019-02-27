@@ -1,3 +1,5 @@
+Background job started: [1]	#PID#	delayed_echo hello 2 & 
+Background job started: [1]	#PID#	echo world & 
 world 
 dir1
 dir2

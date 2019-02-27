@@ -152,7 +152,7 @@ void check_jobs_bg_status() {
       else if(after_p==-1){
         //still have more process in the job
                 ////////NOT SURE
-        //push_back_JobDeque(&jobs, current_job);
+      //  push_back_JobDeque(&jobs, current_job);
       }
       else if(after_p==current_p){
         //this is when all jobs are implemented
@@ -324,8 +324,12 @@ void run_pwd() {
   // IMPLEMENT_ME();
   bool should_free = false;
   char * cwd = get_current_directory(&should_free);
-  fprintf(stdout, "%s\n", cwd );
+  printf("%s\n", cwd);
+//  fprintf(stdout, "%s\n", cwd );
   // Flush the buffer before returning
+  if(should_free){
+    free(cwd);
+  }
   fflush(stdout);
 }
 
