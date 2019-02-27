@@ -130,6 +130,8 @@ void check_jobs_bg_status() {
   // jobs. This function should remove jobs from the jobs queue once all
   // processes belonging to a job have completed.
   //IMPLEMENT_ME();
+  bool still_running = false;
+  pid_t current_p;
 
   if(is_empty_JobDeque(&jobs)){
     return;
@@ -142,12 +144,12 @@ void check_jobs_bg_status() {
 
     for(size_t j=0; j<p_que_length; j++){
       //grab the first process from list of processes
-      pid_t current_p = pop_front_PIDDeque(&current_job.pid_list);
+      current_p = pop_front_PIDDeque(&current_job.pid_list);
       int status;
       pid_t after_p = waitpid(current_p, &status, WNOHANG);
       if(after_p==0){
-        //need to push back because last process in the job
-        push_back_PIDDeque(&current_job.pid_list, current_p);
+        //need to push back because still running process
+        still_running = true;
       }
       else if(after_p==-1){
         //still have more process in the job
@@ -156,10 +158,18 @@ void check_jobs_bg_status() {
       }
       else if(after_p==current_p){
         //this is when all jobs are implemented
-        print_job_bg_complete(current_job.job_id, current_p, current_job.commandline);
+        //print_job_bg_complete(current_job.job_id, current_p, current_job.commandline);
                 ////////NOT SURE
-        //destroy_JobDeque(&jobs);
+        //_destroyJob(current_job);
       }
+      push_back_PIDDeque(&current_job.pid_list, current_p);
+    }
+    if(still_running){
+      push_back_JobDeque(&jobs, current_job);
+    }
+    else{
+      print_job_bg_complete(current_job.job_id, current_p, current_job.commandline);
+      _destroyJob(current_job);
     }
   }
 
