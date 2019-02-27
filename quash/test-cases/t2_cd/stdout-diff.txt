@@ -1,4 +1,4 @@
-4c4
-< 
----
+1d0
+< /home/c111m575/EECS678_Lab/Project1/quash/test-cases/t2_cd/sandbox/dir3
+5a5
 > /home/c111m575/EECS678_Lab/Project1/quash/test-cases/t2_cd/sandbox/dir3

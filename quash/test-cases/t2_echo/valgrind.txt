@@ -1,21 +1,21 @@
-==14478== Memcheck, a memory error detector
-==14478== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==14478== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==14478== Command: /home/c111m575/EECS678_Lab/Project1/quash/quash
-==14478== 
-==14478== 
-==14478== HEAP SUMMARY:
-==14478==     in use at exit: 56 bytes in 1 blocks
-==14478==   total heap usage: 11 allocs, 10 frees, 1,066,473 bytes allocated
-==14478== 
-==14478== LEAK SUMMARY:
-==14478==    definitely lost: 0 bytes in 0 blocks
-==14478==    indirectly lost: 0 bytes in 0 blocks
-==14478==      possibly lost: 0 bytes in 0 blocks
-==14478==    still reachable: 56 bytes in 1 blocks
-==14478==         suppressed: 0 bytes in 0 blocks
-==14478== Reachable blocks (those to which a pointer was found) are not shown.
-==14478== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==14478== 
-==14478== For counts of detected and suppressed errors, rerun with: -v
-==14478== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==22197== Memcheck, a memory error detector
+==22197== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==22197== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==22197== Command: /home/c111m575/EECS678_Lab/Project1/quash/quash
+==22197== 
+==22197== 
+==22197== HEAP SUMMARY:
+==22197==     in use at exit: 56 bytes in 1 blocks
+==22197==   total heap usage: 11 allocs, 10 frees, 1,066,473 bytes allocated
+==22197== 
+==22197== LEAK SUMMARY:
+==22197==    definitely lost: 0 bytes in 0 blocks
+==22197==    indirectly lost: 0 bytes in 0 blocks
+==22197==      possibly lost: 0 bytes in 0 blocks
+==22197==    still reachable: 56 bytes in 1 blocks
+==22197==         suppressed: 0 bytes in 0 blocks
+==22197== Reachable blocks (those to which a pointer was found) are not shown.
+==22197== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==22197== 
+==22197== For counts of detected and suppressed errors, rerun with: -v
+==22197== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

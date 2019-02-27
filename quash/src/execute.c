@@ -102,13 +102,13 @@ char* get_current_directory(bool* should_free) {
   // Change this to true if necessary
   *should_free = true;
 
-  char* cmdbuf = malloc(64);
-  bzero(cmdbuf, 64);
+  //char* cmdbuf = malloc(64);
+  //bzero(cmdbuf, 64);
 /*  sprintf(cmdbuf, getcwd());*/
-  getcwd(cmdbuf, 64);
-  return cmdbuf;
+  //getcwd(cmdbuf, 64);
+  //return cmdbuf;
 
-
+  return getcwd(NULL, 512);
   //return "get_current_directory()";
 }
 
@@ -325,7 +325,7 @@ void run_pwd() {
   bool should_free = false;
   char * cwd = get_current_directory(&should_free);
   printf("%s\n", cwd);
-//  fprintf(stdout, "%s\n", cwd );
+  //fprintf(stdout, "%s\n", cwd );
   // Flush the buffer before returning
   if(should_free){
     free(cwd);

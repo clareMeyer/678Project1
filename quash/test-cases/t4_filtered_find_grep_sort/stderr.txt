@@ -1,25 +1,25 @@
-==14601== Memcheck, a memory error detector
-==14601== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==14601== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
-==14601== Command: /home/c111m575/EECS678_Lab/Project1/quash/quash
-==14601== 
-==14782== Warning: invalid file descriptor -1 in syscall close()
-==14787== Warning: invalid file descriptor -1 in syscall close()
-==14790== Warning: invalid file descriptor -1 in syscall close()
-==14791== Warning: invalid file descriptor -1 in syscall close()
-==14601== 
-==14601== HEAP SUMMARY:
-==14601==     in use at exit: 56 bytes in 1 blocks
-==14601==   total heap usage: 38 allocs, 37 frees, 1,078,194 bytes allocated
-==14601== 
-==14601== LEAK SUMMARY:
-==14601==    definitely lost: 0 bytes in 0 blocks
-==14601==    indirectly lost: 0 bytes in 0 blocks
-==14601==      possibly lost: 0 bytes in 0 blocks
-==14601==    still reachable: 56 bytes in 1 blocks
-==14601==         suppressed: 0 bytes in 0 blocks
-==14601== Reachable blocks (those to which a pointer was found) are not shown.
-==14601== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==14601== 
-==14601== For counts of detected and suppressed errors, rerun with: -v
-==14601== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==22534== Memcheck, a memory error detector
+==22534== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==22534== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==22534== Command: /home/c111m575/EECS678_Lab/Project1/quash/quash
+==22534== 
+==22636== Warning: invalid file descriptor -1 in syscall close()
+==22638== Warning: invalid file descriptor -1 in syscall close()
+==22641== Warning: invalid file descriptor -1 in syscall close()
+==22642== Warning: invalid file descriptor -1 in syscall close()
+==22534== 
+==22534== HEAP SUMMARY:
+==22534==     in use at exit: 56 bytes in 1 blocks
+==22534==   total heap usage: 38 allocs, 37 frees, 1,078,194 bytes allocated
+==22534== 
+==22534== LEAK SUMMARY:
+==22534==    definitely lost: 0 bytes in 0 blocks
+==22534==    indirectly lost: 0 bytes in 0 blocks
+==22534==      possibly lost: 0 bytes in 0 blocks
+==22534==    still reachable: 56 bytes in 1 blocks
+==22534==         suppressed: 0 bytes in 0 blocks
+==22534== Reachable blocks (those to which a pointer was found) are not shown.
+==22534== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==22534== 
+==22534== For counts of detected and suppressed errors, rerun with: -v
+==22534== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

@@ -1,0 +1,25 @@
+==17118== Memcheck, a memory error detector
+==17118== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==17118== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==17118== Command: /home/c111m575/EECS678_Lab/Project1/quash/quash
+==17118== 
+==17223== Warning: invalid file descriptor -1 in syscall close()
+==17226== Warning: invalid file descriptor -1 in syscall close()
+==17229== Warning: invalid file descriptor -1 in syscall close()
+==17233== Warning: invalid file descriptor -1 in syscall close()
+==17118== 
+==17118== HEAP SUMMARY:
+==17118==     in use at exit: 56 bytes in 1 blocks
+==17118==   total heap usage: 38 allocs, 37 frees, 1,078,194 bytes allocated
+==17118== 
+==17118== LEAK SUMMARY:
+==17118==    definitely lost: 0 bytes in 0 blocks
+==17118==    indirectly lost: 0 bytes in 0 blocks
+==17118==      possibly lost: 0 bytes in 0 blocks
+==17118==    still reachable: 56 bytes in 1 blocks
+==17118==         suppressed: 0 bytes in 0 blocks
+==17118== Reachable blocks (those to which a pointer was found) are not shown.
+==17118== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==17118== 
+==17118== For counts of detected and suppressed errors, rerun with: -v
+==17118== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
