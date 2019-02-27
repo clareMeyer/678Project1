@@ -489,11 +489,11 @@ void create_process(CommandHolder holder, int i, Environment* envr) {
         pipe(envr->pipes[i%2]);
     }
 
-    pid_t pid_child;
-    pid_child = fork();
-    push_back_PIDDeque(&envr->job.pid_list,pid_child);
+    pid_t pid_1;
+    pid_1= fork();
 
-    if (pid_child == 0) {
+
+    if (pid_1 == 0) {
         if(p_in){
             // Read from pipe
             dup2(envr->pipes[(i-1)%2][0],STDIN_FILENO);
@@ -526,14 +526,20 @@ void create_process(CommandHolder holder, int i, Environment* envr) {
             dup2(fileOut,STDOUT_FILENO);
             close(fileOut);
         }
+        _destroyEnvironment(&envr);
         child_run_command(holder.cmd);
         exit(0);
     }
-    parent_run_command(holder.cmd);
-
-  //parent_run_command(holder.cmd); // This should be done in the parent branch of
-                                  // a fork
-  //child_run_command(holder.cmd); // This should be done in the child branch of a fork
+    else
+    {
+        push_back_PIDDeque(&envr->job.pid_list,pid_1);
+        parent_run_command(holder.cmd);
+    }
+    if(p_in){
+        // close if the pipe is open for read
+        close(envr->pipes[(i-1)%2][0]);
+        close(envr->pipes[(i-1)%2][1]);
+    }
 }
 
 // Run a list of commands
@@ -578,6 +584,7 @@ void run_script(CommandHolder* holders) {
         int status=0;
         waitpid(current_process, &status, WNOHANG);
     }
+    // same as destroy environment
     free(envr.job.commandline);
     destroy_PIDDeque(&envr.job.pid_list);
   }
