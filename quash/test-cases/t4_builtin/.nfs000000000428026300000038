@@ -1,0 +1,537 @@
+==8147== Memcheck, a memory error detector
+==8147== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==8147== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==8147== Command: /home/c111m575/EECS678_Lab/Project1/quash/quash
+==8147== 
+==8262== Conditional jump or move depends on uninitialised value(s)
+==8262==    at 0x403AFC: _destroyJob (execute.c:64)
+==8262==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8262==    by 0x4044FA: create_process (execute.c:529)
+==8262==    by 0x404717: run_script (execute.c:576)
+==8262==    by 0x401570: main (quash.c:132)
+==8262==  Uninitialised value was created by a stack allocation
+==8262==    at 0x404309: create_process (execute.c:466)
+==8262== 
+==8262== Conditional jump or move depends on uninitialised value(s)
+==8262==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8262==    by 0x403B09: _destroyJob (execute.c:66)
+==8262==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8262==    by 0x4044FA: create_process (execute.c:529)
+==8262==    by 0x404717: run_script (execute.c:576)
+==8262==    by 0x401570: main (quash.c:132)
+==8262==  Uninitialised value was created by a stack allocation
+==8262==    at 0x404309: create_process (execute.c:466)
+==8262== 
+==8262== Invalid free() / delete / delete[] / realloc()
+==8262==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8262==    by 0x403B09: _destroyJob (execute.c:66)
+==8262==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8262==    by 0x4044FA: create_process (execute.c:529)
+==8262==    by 0x404717: run_script (execute.c:576)
+==8262==    by 0x401570: main (quash.c:132)
+==8262==  Address 0x100000005308919 is not stack'd, malloc'd or (recently) free'd
+==8262== 
+==8262== Conditional jump or move depends on uninitialised value(s)
+==8262==    at 0x401A1A: destroy_PIDDeque (execute.c:37)
+==8262==    by 0x403B15: _destroyJob (execute.c:68)
+==8262==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8262==    by 0x4044FA: create_process (execute.c:529)
+==8262==    by 0x404717: run_script (execute.c:576)
+==8262==    by 0x401570: main (quash.c:132)
+==8262==  Uninitialised value was created by a stack allocation
+==8262==    at 0x404309: create_process (execute.c:466)
+==8262== 
+==8261== Conditional jump or move depends on uninitialised value(s)
+==8261==    at 0x403AFC: _destroyJob (execute.c:64)
+==8261==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8261==    by 0x4044FA: create_process (execute.c:529)
+==8261==    by 0x404717: run_script (execute.c:576)
+==8261==    by 0x401570: main (quash.c:132)
+==8261==  Uninitialised value was created by a stack allocation
+==8261==    at 0x404309: create_process (execute.c:466)
+==8261== 
+==8261== Conditional jump or move depends on uninitialised value(s)
+==8261==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8261==    by 0x403B09: _destroyJob (execute.c:66)
+==8261==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8261==    by 0x4044FA: create_process (execute.c:529)
+==8261==    by 0x404717: run_script (execute.c:576)
+==8261==    by 0x401570: main (quash.c:132)
+==8261==  Uninitialised value was created by a stack allocation
+==8261==    at 0x404309: create_process (execute.c:466)
+==8261== 
+==8261== Invalid free() / delete / delete[] / realloc()
+==8261==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8261==    by 0x403B09: _destroyJob (execute.c:66)
+==8261==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8261==    by 0x4044FA: create_process (execute.c:529)
+==8261==    by 0x404717: run_script (execute.c:576)
+==8261==    by 0x401570: main (quash.c:132)
+==8261==  Address 0x1 is not stack'd, malloc'd or (recently) free'd
+==8261== 
+==8261== Conditional jump or move depends on uninitialised value(s)
+==8261==    at 0x401A1A: destroy_PIDDeque (execute.c:37)
+==8261==    by 0x403B15: _destroyJob (execute.c:68)
+==8261==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8261==    by 0x4044FA: create_process (execute.c:529)
+==8261==    by 0x404717: run_script (execute.c:576)
+==8261==    by 0x401570: main (quash.c:132)
+==8261==  Uninitialised value was created by a stack allocation
+==8261==    at 0x404309: create_process (execute.c:466)
+==8261== 
+==8261== Conditional jump or move depends on uninitialised value(s)
+==8261==    at 0x401A4A: destroy_PIDDeque (execute.c:37)
+==8261==    by 0x403B15: _destroyJob (execute.c:68)
+==8261==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8261==    by 0x4044FA: create_process (execute.c:529)
+==8261==    by 0x404717: run_script (execute.c:576)
+==8261==    by 0x401570: main (quash.c:132)
+==8261==  Uninitialised value was created by a stack allocation
+==8261==    at 0x404309: create_process (execute.c:466)
+==8261== 
+==8261== Conditional jump or move depends on uninitialised value(s)
+==8261==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8261==    by 0x401A5A: destroy_PIDDeque (execute.c:37)
+==8261==    by 0x403B15: _destroyJob (execute.c:68)
+==8261==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8261==    by 0x4044FA: create_process (execute.c:529)
+==8261==    by 0x404717: run_script (execute.c:576)
+==8261==    by 0x401570: main (quash.c:132)
+==8261==  Uninitialised value was created by a stack allocation
+==8261==    at 0x404309: create_process (execute.c:466)
+==8261== 
+==8261== Invalid free() / delete / delete[] / realloc()
+==8261==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8261==    by 0x401A5A: destroy_PIDDeque (execute.c:37)
+==8261==    by 0x403B15: _destroyJob (execute.c:68)
+==8261==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8261==    by 0x4044FA: create_process (execute.c:529)
+==8261==    by 0x404717: run_script (execute.c:576)
+==8261==    by 0x401570: main (quash.c:132)
+==8261==  Address 0x1 is not stack'd, malloc'd or (recently) free'd
+==8261== 
+==8264== Conditional jump or move depends on uninitialised value(s)
+==8264==    at 0x403AFC: _destroyJob (execute.c:64)
+==8264==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8264==    by 0x4044FA: create_process (execute.c:529)
+==8264==    by 0x404717: run_script (execute.c:576)
+==8264==    by 0x401570: main (quash.c:132)
+==8264==  Uninitialised value was created by a stack allocation
+==8264==    at 0x404309: create_process (execute.c:466)
+==8264== 
+==8264== Conditional jump or move depends on uninitialised value(s)
+==8264==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8264==    by 0x403B09: _destroyJob (execute.c:66)
+==8264==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8264==    by 0x4044FA: create_process (execute.c:529)
+==8264==    by 0x404717: run_script (execute.c:576)
+==8264==    by 0x401570: main (quash.c:132)
+==8264==  Uninitialised value was created by a stack allocation
+==8264==    at 0x404309: create_process (execute.c:466)
+==8264== 
+==8264== Invalid free() / delete / delete[] / realloc()
+==8264==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8264==    by 0x403B09: _destroyJob (execute.c:66)
+==8264==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8264==    by 0x4044FA: create_process (execute.c:529)
+==8264==    by 0x404717: run_script (execute.c:576)
+==8264==    by 0x401570: main (quash.c:132)
+==8264==  Address 0x5309754 is 68 bytes inside a block of size 1,024 alloc'd
+==8264==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8264==    by 0x40597E: __initialize_memory_pool (memory_pool.c:44)
+==8264==    by 0x405B24: initialize_memory_pool (memory_pool.c:89)
+==8264==    by 0x40154F: main (quash.c:128)
+==8264== 
+==8264== Conditional jump or move depends on uninitialised value(s)
+==8264==    at 0x401A1A: destroy_PIDDeque (execute.c:37)
+==8264==    by 0x403B15: _destroyJob (execute.c:68)
+==8264==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8264==    by 0x4044FA: create_process (execute.c:529)
+==8264==    by 0x404717: run_script (execute.c:576)
+==8264==    by 0x401570: main (quash.c:132)
+==8264==  Uninitialised value was created by a stack allocation
+==8264==    at 0x404309: create_process (execute.c:466)
+==8264== 
+==8264== Conditional jump or move depends on uninitialised value(s)
+==8264==    at 0x401A4A: destroy_PIDDeque (execute.c:37)
+==8264==    by 0x403B15: _destroyJob (execute.c:68)
+==8264==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8264==    by 0x4044FA: create_process (execute.c:529)
+==8264==    by 0x404717: run_script (execute.c:576)
+==8264==    by 0x401570: main (quash.c:132)
+==8264==  Uninitialised value was created by a stack allocation
+==8264==    at 0x404309: create_process (execute.c:466)
+==8264== 
+==8264== Conditional jump or move depends on uninitialised value(s)
+==8264==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8264==    by 0x401A5A: destroy_PIDDeque (execute.c:37)
+==8264==    by 0x403B15: _destroyJob (execute.c:68)
+==8264==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8264==    by 0x4044FA: create_process (execute.c:529)
+==8264==    by 0x404717: run_script (execute.c:576)
+==8264==    by 0x401570: main (quash.c:132)
+==8264==  Uninitialised value was created by a stack allocation
+==8264==    at 0x404309: create_process (execute.c:466)
+==8264== 
+==8264== Invalid free() / delete / delete[] / realloc()
+==8264==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8264==    by 0x401A5A: destroy_PIDDeque (execute.c:37)
+==8264==    by 0x403B15: _destroyJob (execute.c:68)
+==8264==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8264==    by 0x4044FA: create_process (execute.c:529)
+==8264==    by 0x404717: run_script (execute.c:576)
+==8264==    by 0x401570: main (quash.c:132)
+==8264==  Address 0x1 is not stack'd, malloc'd or (recently) free'd
+==8264== 
+==8263== Conditional jump or move depends on uninitialised value(s)
+==8263==    at 0x403AFC: _destroyJob (execute.c:64)
+==8263==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8263==    by 0x4044FA: create_process (execute.c:529)
+==8263==    by 0x404717: run_script (execute.c:576)
+==8263==    by 0x401570: main (quash.c:132)
+==8263==  Uninitialised value was created by a stack allocation
+==8263==    at 0x404309: create_process (execute.c:466)
+==8263== 
+==8263== Conditional jump or move depends on uninitialised value(s)
+==8263==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8263==    by 0x403B09: _destroyJob (execute.c:66)
+==8263==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8263==    by 0x4044FA: create_process (execute.c:529)
+==8263==    by 0x404717: run_script (execute.c:576)
+==8263==    by 0x401570: main (quash.c:132)
+==8263==  Uninitialised value was created by a stack allocation
+==8263==    at 0x404309: create_process (execute.c:466)
+==8263== 
+==8263== Invalid free() / delete / delete[] / realloc()
+==8263==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8263==    by 0x403B09: _destroyJob (execute.c:66)
+==8263==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8263==    by 0x4044FA: create_process (execute.c:529)
+==8263==    by 0x404717: run_script (execute.c:576)
+==8263==    by 0x401570: main (quash.c:132)
+==8263==  Address 0xffeffd398 is on thread 1's stack
+==8263==  10696 bytes below stack pointer
+==8263== 
+==8263== Invalid free() / delete / delete[] / realloc()
+==8263==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8263==    by 0x401A5A: destroy_PIDDeque (execute.c:37)
+==8263==    by 0x403B15: _destroyJob (execute.c:68)
+==8263==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8263==    by 0x4044FA: create_process (execute.c:529)
+==8263==    by 0x404717: run_script (execute.c:576)
+==8263==    by 0x401570: main (quash.c:132)
+==8263==  Address 0x300010000 is not stack'd, malloc'd or (recently) free'd
+==8263== 
+==8266== Conditional jump or move depends on uninitialised value(s)
+==8266==    at 0x403AFC: _destroyJob (execute.c:64)
+==8266==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8266==    by 0x4044FA: create_process (execute.c:529)
+==8266==    by 0x404717: run_script (execute.c:576)
+==8266==    by 0x401570: main (quash.c:132)
+==8266==  Uninitialised value was created by a stack allocation
+==8266==    at 0x404309: create_process (execute.c:466)
+==8266== 
+==8266== Conditional jump or move depends on uninitialised value(s)
+==8266==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8266==    by 0x403B09: _destroyJob (execute.c:66)
+==8266==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8266==    by 0x4044FA: create_process (execute.c:529)
+==8266==    by 0x404717: run_script (execute.c:576)
+==8266==    by 0x401570: main (quash.c:132)
+==8266==  Uninitialised value was created by a stack allocation
+==8266==    at 0x404309: create_process (execute.c:466)
+==8266== 
+==8266== Invalid free() / delete / delete[] / realloc()
+==8266==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8266==    by 0x403B09: _destroyJob (execute.c:66)
+==8266==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8266==    by 0x4044FA: create_process (execute.c:529)
+==8266==    by 0x404717: run_script (execute.c:576)
+==8266==    by 0x401570: main (quash.c:132)
+==8266==  Address 0x10000000530983d is not stack'd, malloc'd or (recently) free'd
+==8266== 
+==8266== Conditional jump or move depends on uninitialised value(s)
+==8266==    at 0x401A1A: destroy_PIDDeque (execute.c:37)
+==8266==    by 0x403B15: _destroyJob (execute.c:68)
+==8266==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8266==    by 0x4044FA: create_process (execute.c:529)
+==8266==    by 0x404717: run_script (execute.c:576)
+==8266==    by 0x401570: main (quash.c:132)
+==8266==  Uninitialised value was created by a stack allocation
+==8266==    at 0x404309: create_process (execute.c:466)
+==8266== 
+==8271== Conditional jump or move depends on uninitialised value(s)
+==8271==    at 0x403AFC: _destroyJob (execute.c:64)
+==8271==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8271==    by 0x4044FA: create_process (execute.c:529)
+==8271==    by 0x404717: run_script (execute.c:576)
+==8271==    by 0x401570: main (quash.c:132)
+==8271==  Uninitialised value was created by a stack allocation
+==8271==    at 0x404309: create_process (execute.c:466)
+==8271== 
+==8271== Conditional jump or move depends on uninitialised value(s)
+==8271==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8271==    by 0x403B09: _destroyJob (execute.c:66)
+==8271==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8271==    by 0x4044FA: create_process (execute.c:529)
+==8271==    by 0x404717: run_script (execute.c:576)
+==8271==    by 0x401570: main (quash.c:132)
+==8271==  Uninitialised value was created by a stack allocation
+==8271==    at 0x404309: create_process (execute.c:466)
+==8271== 
+==8271== Invalid free() / delete / delete[] / realloc()
+==8271==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8271==    by 0x403B09: _destroyJob (execute.c:66)
+==8271==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8271==    by 0x4044FA: create_process (execute.c:529)
+==8271==    by 0x404717: run_script (execute.c:576)
+==8271==    by 0x401570: main (quash.c:132)
+==8271==  Address 0x530c015 is 69 bytes inside a block of size 1,024 alloc'd
+==8271==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8271==    by 0x40597E: __initialize_memory_pool (memory_pool.c:44)
+==8271==    by 0x405B24: initialize_memory_pool (memory_pool.c:89)
+==8271==    by 0x40154F: main (quash.c:128)
+==8271== 
+==8271== Conditional jump or move depends on uninitialised value(s)
+==8271==    at 0x401A1A: destroy_PIDDeque (execute.c:37)
+==8271==    by 0x403B15: _destroyJob (execute.c:68)
+==8271==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8271==    by 0x4044FA: create_process (execute.c:529)
+==8271==    by 0x404717: run_script (execute.c:576)
+==8271==    by 0x401570: main (quash.c:132)
+==8271==  Uninitialised value was created by a stack allocation
+==8271==    at 0x404309: create_process (execute.c:466)
+==8271== 
+==8268== Conditional jump or move depends on uninitialised value(s)
+==8268==    at 0x403AFC: _destroyJob (execute.c:64)
+==8268==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8268==    by 0x4044FA: create_process (execute.c:529)
+==8268==    by 0x404717: run_script (execute.c:576)
+==8268==    by 0x401570: main (quash.c:132)
+==8268==  Uninitialised value was created by a stack allocation
+==8268==    at 0x404309: create_process (execute.c:466)
+==8268== 
+==8268== Conditional jump or move depends on uninitialised value(s)
+==8268==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8268==    by 0x403B09: _destroyJob (execute.c:66)
+==8268==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8268==    by 0x4044FA: create_process (execute.c:529)
+==8268==    by 0x404717: run_script (execute.c:576)
+==8268==    by 0x401570: main (quash.c:132)
+==8268==  Uninitialised value was created by a stack allocation
+==8268==    at 0x404309: create_process (execute.c:466)
+==8268== 
+==8268== Invalid free() / delete / delete[] / realloc()
+==8268==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8268==    by 0x403B09: _destroyJob (execute.c:66)
+==8268==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8268==    by 0x4044FA: create_process (execute.c:529)
+==8268==    by 0x404717: run_script (execute.c:576)
+==8268==    by 0x401570: main (quash.c:132)
+==8268==  Address 0x10000000530b248 is not stack'd, malloc'd or (recently) free'd
+==8268== 
+==8268== Conditional jump or move depends on uninitialised value(s)
+==8268==    at 0x401A1A: destroy_PIDDeque (execute.c:37)
+==8268==    by 0x403B15: _destroyJob (execute.c:68)
+==8268==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8268==    by 0x4044FA: create_process (execute.c:529)
+==8268==    by 0x404717: run_script (execute.c:576)
+==8268==    by 0x401570: main (quash.c:132)
+==8268==  Uninitialised value was created by a stack allocation
+==8268==    at 0x404309: create_process (execute.c:466)
+==8268== 
+==8267== Conditional jump or move depends on uninitialised value(s)
+==8267==    at 0x403AFC: _destroyJob (execute.c:64)
+==8267==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8267==    by 0x4044FA: create_process (execute.c:529)
+==8267==    by 0x404717: run_script (execute.c:576)
+==8267==    by 0x401570: main (quash.c:132)
+==8267==  Uninitialised value was created by a stack allocation
+==8267==    at 0x401635: mk_echo_command (command.c:39)
+==8267== 
+==8267== Conditional jump or move depends on uninitialised value(s)
+==8267==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8267==    by 0x403B09: _destroyJob (execute.c:66)
+==8267==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8267==    by 0x4044FA: create_process (execute.c:529)
+==8267==    by 0x404717: run_script (execute.c:576)
+==8267==    by 0x401570: main (quash.c:132)
+==8267==  Uninitialised value was created by a stack allocation
+==8267==    at 0x401635: mk_echo_command (command.c:39)
+==8267== 
+==8267== Invalid free() / delete / delete[] / realloc()
+==8267==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8267==    by 0x403B09: _destroyJob (execute.c:66)
+==8267==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8267==    by 0x4044FA: create_process (execute.c:529)
+==8267==    by 0x404717: run_script (execute.c:576)
+==8267==    by 0x401570: main (quash.c:132)
+==8267==  Address 0x530b1e3 is 99 bytes inside a block of size 1,024 alloc'd
+==8267==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8267==    by 0x40597E: __initialize_memory_pool (memory_pool.c:44)
+==8267==    by 0x405B24: initialize_memory_pool (memory_pool.c:89)
+==8267==    by 0x40154F: main (quash.c:128)
+==8267== 
+==8267== Conditional jump or move depends on uninitialised value(s)
+==8267==    at 0x401A1A: destroy_PIDDeque (execute.c:37)
+==8267==    by 0x403B15: _destroyJob (execute.c:68)
+==8267==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8267==    by 0x4044FA: create_process (execute.c:529)
+==8267==    by 0x404717: run_script (execute.c:576)
+==8267==    by 0x401570: main (quash.c:132)
+==8267==  Uninitialised value was created by a stack allocation
+==8267==    at 0x401635: mk_echo_command (command.c:39)
+==8267== 
+==8267== Conditional jump or move depends on uninitialised value(s)
+==8267==    at 0x401A4A: destroy_PIDDeque (execute.c:37)
+==8267==    by 0x403B15: _destroyJob (execute.c:68)
+==8267==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8267==    by 0x4044FA: create_process (execute.c:529)
+==8267==    by 0x404717: run_script (execute.c:576)
+==8267==    by 0x401570: main (quash.c:132)
+==8267==  Uninitialised value was created by a stack allocation
+==8267==    at 0x401635: mk_echo_command (command.c:39)
+==8267== 
+==8267== Conditional jump or move depends on uninitialised value(s)
+==8267==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8267==    by 0x401A5A: destroy_PIDDeque (execute.c:37)
+==8267==    by 0x403B15: _destroyJob (execute.c:68)
+==8267==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8267==    by 0x4044FA: create_process (execute.c:529)
+==8267==    by 0x404717: run_script (execute.c:576)
+==8267==    by 0x401570: main (quash.c:132)
+==8267==  Uninitialised value was created by a stack allocation
+==8267==    at 0x401635: mk_echo_command (command.c:39)
+==8267== 
+==8267== Invalid free() / delete / delete[] / realloc()
+==8267==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8267==    by 0x401A5A: destroy_PIDDeque (execute.c:37)
+==8267==    by 0x403B15: _destroyJob (execute.c:68)
+==8267==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8267==    by 0x4044FA: create_process (execute.c:529)
+==8267==    by 0x404717: run_script (execute.c:576)
+==8267==    by 0x401570: main (quash.c:132)
+==8267==  Address 0x1 is not stack'd, malloc'd or (recently) free'd
+==8267== 
+==8147== 
+==8147== HEAP SUMMARY:
+==8147==     in use at exit: 56 bytes in 1 blocks
+==8147==   total heap usage: 51 allocs, 50 frees, 1,079,256 bytes allocated
+==8147== 
+==8147== LEAK SUMMARY:
+==8147==    definitely lost: 0 bytes in 0 blocks
+==8147==    indirectly lost: 0 bytes in 0 blocks
+==8147==      possibly lost: 0 bytes in 0 blocks
+==8147==    still reachable: 56 bytes in 1 blocks
+==8147==         suppressed: 0 bytes in 0 blocks
+==8147== Reachable blocks (those to which a pointer was found) are not shown.
+==8147== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==8147== 
+==8147== For counts of detected and suppressed errors, rerun with: -v
+==8147== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==8261== 
+==8269== Conditional jump or move depends on uninitialised value(s)
+==8261== HEAP SUMMARY:
+==8261==     in use at exit: 82 bytes in 3 blocks
+==8261==   total heap usage: 14 allocs, 13 frees, 1,072,340 bytes allocated
+==8261== 
+==8269==    at 0x403AFC: _destroyJob (execute.c:64)
+==8269==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8269==    by 0x4044FA: create_process (execute.c:529)
+==8269==    by 0x404717: run_script (execute.c:576)
+==8269==    by 0x401570: main (quash.c:132)
+==8269==  Uninitialised value was created by a stack allocation
+==8269==    at 0x401635: mk_echo_command (command.c:39)
+==8269== 
+==8269== Conditional jump or move depends on uninitialised value(s)
+==8269==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8269==    by 0x403B09: _destroyJob (execute.c:66)
+==8269==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8269==    by 0x4044FA: create_process (execute.c:529)
+==8269==    by 0x404717: run_script (execute.c:576)
+==8269==    by 0x401570: main (quash.c:132)
+==8269==  Uninitialised value was created by a stack allocation
+==8269==    at 0x401635: mk_echo_command (command.c:39)
+==8269== 
+==8269== Invalid free() / delete / delete[] / realloc()
+==8269==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8269==    by 0x403B09: _destroyJob (execute.c:66)
+==8269==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8269==    by 0x4044FA: create_process (execute.c:529)
+==8269==    by 0x404717: run_script (execute.c:576)
+==8269==    by 0x401570: main (quash.c:132)
+==8269==  Address 0x530b8ee is 30 bytes inside a block of size 1,024 alloc'd
+==8269==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8269==    by 0x40597E: __initialize_memory_pool (memory_pool.c:44)
+==8269==    by 0x405B24: initialize_memory_pool (memory_pool.c:89)
+==8269==    by 0x40154F: main (quash.c:128)
+==8269== 
+==8261== LEAK SUMMARY:
+==8261==    definitely lost: 0 bytes in 0 blocks
+==8261==    indirectly lost: 0 bytes in 0 blocks
+==8261==      possibly lost: 0 bytes in 0 blocks
+==8261==    still reachable: 82 bytes in 3 blocks
+==8261==         suppressed: 0 bytes in 0 blocks
+==8261== Reachable blocks (those to which a pointer was found) are not shown.
+==8261== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==8261== 
+==8261== For counts of detected and suppressed errors, rerun with: -v
+==8261== ERROR SUMMARY: 7 errors from 7 contexts (suppressed: 0 from 0)
+==8269== Invalid free() / delete / delete[] / realloc()
+==8269==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8269==    by 0x401A5A: destroy_PIDDeque (execute.c:37)
+==8269==    by 0x403B15: _destroyJob (execute.c:68)
+==8269==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8269==    by 0x4044FA: create_process (execute.c:529)
+==8269==    by 0x404717: run_script (execute.c:576)
+==8269==    by 0x401570: main (quash.c:132)
+==8269==  Address 0x300010000 is not stack'd, malloc'd or (recently) free'd
+==8269== 
+==8263== 
+==8263== HEAP SUMMARY:
+==8263==     in use at exit: 75 bytes in 3 blocks
+==8263==   total heap usage: 21 allocs, 20 frees, 2,118,207 bytes allocated
+==8263== 
+==8263== LEAK SUMMARY:
+==8263==    definitely lost: 0 bytes in 0 blocks
+==8263==    indirectly lost: 0 bytes in 0 blocks
+==8263==      possibly lost: 0 bytes in 0 blocks
+==8263==    still reachable: 75 bytes in 3 blocks
+==8263==         suppressed: 0 bytes in 0 blocks
+==8263== Reachable blocks (those to which a pointer was found) are not shown.
+==8263== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==8263== 
+==8263== For counts of detected and suppressed errors, rerun with: -v
+==8263== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
+==8267== 
+==8267== HEAP SUMMARY:
+==8267==     in use at exit: 90 bytes in 3 blocks
+==8267==   total heap usage: 38 allocs, 37 frees, 1,080,579 bytes allocated
+==8267== 
+==8267== LEAK SUMMARY:
+==8267==    definitely lost: 0 bytes in 0 blocks
+==8267==    indirectly lost: 0 bytes in 0 blocks
+==8267==      possibly lost: 0 bytes in 0 blocks
+==8267==    still reachable: 90 bytes in 3 blocks
+==8267==         suppressed: 0 bytes in 0 blocks
+==8267== Reachable blocks (those to which a pointer was found) are not shown.
+==8267== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==8267== 
+==8267== For counts of detected and suppressed errors, rerun with: -v
+==8267== ERROR SUMMARY: 7 errors from 7 contexts (suppressed: 0 from 0)
+==8269== 
+==8269== HEAP SUMMARY:
+==8269==     in use at exit: 83 bytes in 3 blocks
+==8269==   total heap usage: 45 allocs, 44 frees, 2,126,454 bytes allocated
+==8269== 
+==8269== LEAK SUMMARY:
+==8269==    definitely lost: 0 bytes in 0 blocks
+==8269==    indirectly lost: 0 bytes in 0 blocks
+==8269==      possibly lost: 0 bytes in 0 blocks
+==8269==    still reachable: 83 bytes in 3 blocks
+==8269==         suppressed: 0 bytes in 0 blocks
+==8269== Reachable blocks (those to which a pointer was found) are not shown.
+==8269== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==8269== 
+==8269== For counts of detected and suppressed errors, rerun with: -v
+==8269== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)

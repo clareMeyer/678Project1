@@ -96,43 +96,18 @@ static void _destroyEnvironment(Environment* env){
  ***************************************************************************/
 // Return a string containing the current working directory.
 char* get_current_directory(bool* should_free) {
-  // TODO: Get the current working directory. This will fix the prompt path.
-  // HINT: This should be pretty simple
-  //IMPLEMENT_ME();
-  // Change this to true if necessary
   *should_free = true;
 
-  //char* cmdbuf = malloc(64);
-  //bzero(cmdbuf, 64);
-/*  sprintf(cmdbuf, getcwd());*/
-  //getcwd(cmdbuf, 64);
-  //return cmdbuf;
-
   return getcwd(NULL, 512);
-  //return "get_current_directory()";
 }
 
 // Returns the value of an environment variable env_var
 const char* lookup_env(const char* env_var) {
-  // TODO: Lookup environment variables. This is required for parser to be able
-  // to interpret variables from the command line and display the prompt
-  // correctly
-  // HINT: This should be pretty simple
-  // TODO: Remove warning silencers
-  //(void) env_var; // Silence unused variable warning
-
   return getenv(env_var);
 }
 
 // Check the status of background jobs
 void check_jobs_bg_status() {
-  // TODO: Check on the statuses of all processes belonging to all background
-  // jobs. This function should remove jobs from the jobs queue once all
-  // processes belonging to a job have completed.
-  //IMPLEMENT_ME();
-  // still_running = false;
-  //pid_t current_p;
-
   if(is_empty_JobDeque(&jobs)){
     return;
   };
@@ -156,17 +131,11 @@ void check_jobs_bg_status() {
         //still_running = true;
       }
       else if(after_p==-1){
-        //still have more process in the job
-                ////////NOT SURE
-      //  push_back_JobDeque(&jobs, current_job);
+
       }
       else if(after_p==current_p){
-        //this is when all jobs are implemented
-        //print_job_bg_complete(current_job.job_id, current_p, current_job.commandline);
-                ////////NOT SURE
-        //_destroyJob(current_job);
+
       }
-      //push_back_PIDDeque(&current_job.pid_list, current_p);
     }
     if(!is_empty_PIDDeque(&current_job.pid_list)){
       push_back_JobDeque(&jobs, current_job);
@@ -176,9 +145,6 @@ void check_jobs_bg_status() {
       _destroyJob(current_job);
     }
   }
-
-  // TODO: Once jobs are implemented, uncomment and fill the following line
-  // print_job_bg_complete(job_id, pid, cmd);
 }
 
 // Prints the job id number, the process id of the first process belonging to
@@ -212,12 +178,6 @@ void run_generic(GenericCommand cmd) {
   char* exec = cmd.args[0];
   char** args = cmd.args;
 
-  // // TODO: Remove warning silencers
-  // (void) exec; // Silence unused variable warning
-  // (void) args; // Silence unused variable warning
-  //
-  // // TODO: Implement run generic
-  // IMPLEMENT_ME();
   execvp(exec, args);
 
   perror("ERROR: Failed to execute program");
@@ -225,21 +185,9 @@ void run_generic(GenericCommand cmd) {
 
 // Print strings
 void run_echo(EchoCommand cmd) {
-  // FINISHED!!! (think so)
   // Print an array of strings. The args array is a NULL terminated (last
   // string is always NULL) list of strings.
   char** str = cmd.args;
-
-  // TODO: Remove warning silencers
-  // (void) str; // Silence unused variable warning
-
-  // TODO: Implement echo
-  // IMPLEMENT_ME();
-  //*********************changed to for loop
-/*  for(int i=0; str[i]!=NULL; i++){
-    printf("%s ", str[i]);
-  }
-  printf("\n");*/
 
   int i=0;
   while(str[i]!=NULL){
@@ -248,27 +196,16 @@ void run_echo(EchoCommand cmd) {
   }
   printf("\n");
 
-
   // Flush the buffer before returning
   fflush(stdout);
 }
 
 // Sets an environment variable
 void run_export(ExportCommand cmd) {
-  // FINISHED!!! (think so)
   // Write an environment variable
   const char* env_var = cmd.env_var;
   const char* val = cmd.val;
 
-  // TODO: Remove warning silencers
-  // (void) env_var; // Silence unused variable warning
-  // (void) val;     // Silence unused variable warning
-
-  // TODO: Implement export.
-
-  // HINT: This should be quite simple.
-  // IMPLEMENT_ME();
-  ////////////////////////////////// DOUBLE CHECK setenv(3), why last parameter is 1
   setenv(env_var,val,1);
 }
 
@@ -283,13 +220,8 @@ void run_cd(CDCommand cmd) {
     return;
   }
 
-  // TODO: Change directory
   chdir(dir);
 
-  // TODO: Update the PWD environment variable to be the new current working
-  // directory and optionally update OLD_PWD environment variable to be the old
-  // working directory.
-  // IMPLEMENT_ME();
   setenv("OLD_PWD",lookup_env("PWD"),1);
   setenv("PWD",dir,1);
 }
@@ -298,10 +230,6 @@ void run_cd(CDCommand cmd) {
 void run_kill(KillCommand cmd) {
   int signal = cmd.sig;
   int job_id = cmd.job;
-
-  // TODO: Remove warning silencers
-  //(void) signal; // Silence unused variable warning
-  //(void) job_id; // Silence unused variable warning
 
   //run loop that kills jobs
     //run loop that kills processes
@@ -315,31 +243,22 @@ void run_kill(KillCommand cmd) {
       //loop through the processes in the current job
       for(int j=0; j<p_que_length; j++){
         pid_t current_p = pop_front_PIDDeque(&current_job.pid_list);
-        //check this because not sure what inputs it requires for sure
         //kill takes a proccess and a signal, signal declared above
         kill(current_p, signal);
-        //think we have to push back that its killed?
         push_back_PIDDeque(&current_job.pid_list, current_p);
       }
     }
     //just put the job back on the que because its not the job you're looking for
     push_back_JobDeque(&jobs, current_job);
   }
-
-
-  // TODO: Kill all processes associated with a background job
-//  IMPLEMENT_ME();
 }
 
 
 // Prints the current working directory to stdout
 void run_pwd() {
-  // TODO: Print the current working directory
-  // IMPLEMENT_ME();
   bool should_free = false;
   char * cwd = get_current_directory(&should_free);
   printf("%s\n", cwd);
-  //fprintf(stdout, "%s\n", cwd );
   // Flush the buffer before returning
   if(should_free){
     free(cwd);
@@ -349,9 +268,6 @@ void run_pwd() {
 
 // Prints all background jobs currently in the job list to stdout
 void run_jobs() {
-  // FINISHED!!! (think so)
-  // TODO: Print background jobs
-  // IMPLEMENT_ME();
   size_t jobs_length = length_JobDeque(&jobs);
   for(size_t i=0; i<jobs_length; i++){
      // Pop front job to get its values
@@ -476,17 +392,6 @@ void create_process(CommandHolder holder, int i, Environment* envr) {
     bool r_app = holder.flags & REDIRECT_APPEND; // This can only be true if r_out
                                                // is true
 
-    // TODO: Remove warning silencers
-    // (void) p_in;  // Silence unused variable warning
-    // (void) p_out; // Silence unused variable warning
-    // (void) r_in;  // Silence unused variable warning
-    // (void) r_out; // Silence unused variable warning
-    // (void) r_app; // Silence unused variable warning
-
-    // TODO: Setup pipes, redirects, and new process
-    // IMPLEMENT_ME();
-    // STARTED IMPLEMENTATION. JUST BASIC STRUCTURE. NOT WORKING (YET)
-
     // create pipe if its p_out
     if(p_out)
     {
@@ -580,9 +485,6 @@ void run_script(CommandHolder* holders) {
     create_process(holders[i],i,&envr);
 
   if (!(holders[0].flags & BACKGROUND)) {
-    // Not a background Job
-    // TODO: Wait for all processes under the job to complete
-    // QUESTION: We have to destroy the process because it is completed right? (so pop them)   WRONG!!!!!!!!!!!!!!!!!!!!!!!!!
     while (!is_empty_PIDDeque(&envr.job.pid_list)) {
         pid_t current_process = pop_front_PIDDeque(&envr.job.pid_list);
         int status=0;
@@ -593,9 +495,6 @@ void run_script(CommandHolder* holders) {
     destroy_PIDDeque(&envr.job.pid_list);
   }
   else {
-    // A background job.
-    // TODO: Push the new job to the job queue
-    // IMPLEMENT_ME();
     if(is_empty_JobDeque(&jobs))
     {
         envr.job.job_id = 1;
@@ -607,7 +506,6 @@ void run_script(CommandHolder* holders) {
 
     push_back_JobDeque(&jobs,envr.job);
 
-    // TODO: Once jobs are implemented, uncomment and fill the following line
     print_job_bg_start(envr.job.job_id, peek_front_PIDDeque(&envr.job.pid_list), envr.job.commandline);
   }
 }

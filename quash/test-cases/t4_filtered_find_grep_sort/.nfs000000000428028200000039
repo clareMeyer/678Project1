@@ -1,0 +1,473 @@
+==8171== Memcheck, a memory error detector
+==8171== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==8171== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==8171== Command: /home/c111m575/EECS678_Lab/Project1/quash/quash
+==8171== 
+==8303== Conditional jump or move depends on uninitialised value(s)
+==8303==    at 0x403AFC: _destroyJob (execute.c:64)
+==8303==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8303==    by 0x4044FA: create_process (execute.c:529)
+==8303==    by 0x404717: run_script (execute.c:576)
+==8303==    by 0x401570: main (quash.c:132)
+==8303==  Uninitialised value was created by a stack allocation
+==8303==    at 0x404309: create_process (execute.c:466)
+==8303== 
+==8303== Conditional jump or move depends on uninitialised value(s)
+==8303==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8303==    by 0x403B09: _destroyJob (execute.c:66)
+==8303==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8303==    by 0x4044FA: create_process (execute.c:529)
+==8303==    by 0x404717: run_script (execute.c:576)
+==8303==    by 0x401570: main (quash.c:132)
+==8303==  Uninitialised value was created by a stack allocation
+==8303==    at 0x404309: create_process (execute.c:466)
+==8303== 
+==8303== Invalid free() / delete / delete[] / realloc()
+==8303==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8303==    by 0x403B09: _destroyJob (execute.c:66)
+==8303==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8303==    by 0x4044FA: create_process (execute.c:529)
+==8303==    by 0x404717: run_script (execute.c:576)
+==8303==    by 0x401570: main (quash.c:132)
+==8303==  Address 0x530886b is 27 bytes inside a block of size 1,024 alloc'd
+==8303==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8303==    by 0x40597E: __initialize_memory_pool (memory_pool.c:44)
+==8303==    by 0x405B24: initialize_memory_pool (memory_pool.c:89)
+==8303==    by 0x40154F: main (quash.c:128)
+==8303== 
+==8303== Invalid free() / delete / delete[] / realloc()
+==8303==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8303==    by 0x401A5A: destroy_PIDDeque (execute.c:37)
+==8303==    by 0x403B15: _destroyJob (execute.c:68)
+==8303==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8303==    by 0x4044FA: create_process (execute.c:529)
+==8303==    by 0x404717: run_script (execute.c:576)
+==8303==    by 0x401570: main (quash.c:132)
+==8303==  Address 0x300010000 is not stack'd, malloc'd or (recently) free'd
+==8303== 
+==8308== Conditional jump or move depends on uninitialised value(s)
+==8308==    at 0x403AFC: _destroyJob (execute.c:64)
+==8308==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8308==    by 0x4044FA: create_process (execute.c:529)
+==8308==    by 0x404717: run_script (execute.c:576)
+==8308==    by 0x401570: main (quash.c:132)
+==8308==  Uninitialised value was created by a stack allocation
+==8308==    at 0x404309: create_process (execute.c:466)
+==8308== 
+==8308== Conditional jump or move depends on uninitialised value(s)
+==8308==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8308==    by 0x403B09: _destroyJob (execute.c:66)
+==8308==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8308==    by 0x4044FA: create_process (execute.c:529)
+==8308==    by 0x404717: run_script (execute.c:576)
+==8308==    by 0x401570: main (quash.c:132)
+==8308==  Uninitialised value was created by a stack allocation
+==8308==    at 0x404309: create_process (execute.c:466)
+==8308== 
+==8308== Invalid free() / delete / delete[] / realloc()
+==8308==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8308==    by 0x403B09: _destroyJob (execute.c:66)
+==8308==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8308==    by 0x4044FA: create_process (execute.c:529)
+==8308==    by 0x404717: run_script (execute.c:576)
+==8308==    by 0x401570: main (quash.c:132)
+==8308==  Address 0x5309b25 is 133 bytes inside a block of size 1,024 alloc'd
+==8308==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8308==    by 0x40597E: __initialize_memory_pool (memory_pool.c:44)
+==8308==    by 0x405B24: initialize_memory_pool (memory_pool.c:89)
+==8308==    by 0x40154F: main (quash.c:128)
+==8308== 
+==8309== Conditional jump or move depends on uninitialised value(s)
+==8309==    at 0x403AFC: _destroyJob (execute.c:64)
+==8309==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8309==    by 0x4044FA: create_process (execute.c:529)
+==8309==    by 0x404717: run_script (execute.c:576)
+==8309==    by 0x401570: main (quash.c:132)
+==8309==  Uninitialised value was created by a stack allocation
+==8309==    at 0x404309: create_process (execute.c:466)
+==8309== 
+==8308== Conditional jump or move depends on uninitialised value(s)
+==8308==    at 0x401A1A: destroy_PIDDeque (execute.c:37)
+==8308==    by 0x403B15: _destroyJob (execute.c:68)
+==8308==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8309== Conditional jump or move depends on uninitialised value(s)
+==8308==    by 0x4044FA: create_process (execute.c:529)
+==8309==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8308==    by 0x404717: run_script (execute.c:576)
+==8309==    by 0x403B09: _destroyJob (execute.c:66)
+==8308==    by 0x401570: main (quash.c:132)
+==8309==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8308==  Uninitialised value was created by a stack allocation
+==8309==    by 0x4044FA: create_process (execute.c:529)
+==8308==    at 0x404309: create_process (execute.c:466)
+==8308== 
+==8309==    by 0x404717: run_script (execute.c:576)
+==8309==    by 0x401570: main (quash.c:132)
+==8309==  Uninitialised value was created by a stack allocation
+==8309==    at 0x404309: create_process (execute.c:466)
+==8309== 
+==8309== Invalid free() / delete / delete[] / realloc()
+==8309==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8309==    by 0x403B09: _destroyJob (execute.c:66)
+==8309==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8309==    by 0x4044FA: create_process (execute.c:529)
+==8309==    by 0x404717: run_script (execute.c:576)
+==8309==    by 0x401570: main (quash.c:132)
+==8309==  Address 0x100000005309c83 is not stack'd, malloc'd or (recently) free'd
+==8309== 
+==8309== Conditional jump or move depends on uninitialised value(s)
+==8309==    at 0x401A1A: destroy_PIDDeque (execute.c:37)
+==8309==    by 0x403B15: _destroyJob (execute.c:68)
+==8309==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8309==    by 0x4044FA: create_process (execute.c:529)
+==8309==    by 0x404717: run_script (execute.c:576)
+==8309==    by 0x401570: main (quash.c:132)
+==8309==  Uninitialised value was created by a stack allocation
+==8309==    at 0x404309: create_process (execute.c:466)
+==8309== 
+==8309== Conditional jump or move depends on uninitialised value(s)
+==8309==    at 0x401A4A: destroy_PIDDeque (execute.c:37)
+==8309==    by 0x403B15: _destroyJob (execute.c:68)
+==8309==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8309==    by 0x4044FA: create_process (execute.c:529)
+==8309==    by 0x404717: run_script (execute.c:576)
+==8309==    by 0x401570: main (quash.c:132)
+==8309==  Uninitialised value was created by a stack allocation
+==8309==    at 0x404309: create_process (execute.c:466)
+==8309== 
+==8308== Conditional jump or move depends on uninitialised value(s)
+==8308==    at 0x401E70: apply_PIDDeque (execute.c:37)
+==8308==    by 0x401A3F: destroy_PIDDeque (execute.c:37)
+==8308==    by 0x403B15: _destroyJob (execute.c:68)
+==8308==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8308==    by 0x4044FA: create_process (execute.c:529)
+==8308==    by 0x404717: run_script (execute.c:576)
+==8308==    by 0x401570: main (quash.c:132)
+==8308==  Uninitialised value was created by a stack allocation
+==8308==    at 0x404309: create_process (execute.c:466)
+==8308== 
+==8309== Conditional jump or move depends on uninitialised value(s)
+==8309==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8309==    by 0x401A5A: destroy_PIDDeque (execute.c:37)
+==8309==    by 0x403B15: _destroyJob (execute.c:68)
+==8309==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8309==    by 0x4044FA: create_process (execute.c:529)
+==8309==    by 0x404717: run_script (execute.c:576)
+==8309==    by 0x401570: main (quash.c:132)
+==8309==  Uninitialised value was created by a stack allocation
+==8309==    at 0x404309: create_process (execute.c:466)
+==8309== 
+==8309== Invalid free() / delete / delete[] / realloc()
+==8309==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8309==    by 0x401A5A: destroy_PIDDeque (execute.c:37)
+==8309==    by 0x403B15: _destroyJob (execute.c:68)
+==8309==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8309==    by 0x4044FA: create_process (execute.c:529)
+==8309==    by 0x404717: run_script (execute.c:576)
+==8309==    by 0x401570: main (quash.c:132)
+==8309==  Address 0x1 is not stack'd, malloc'd or (recently) free'd
+==8309== 
+==8308== Conditional jump or move depends on uninitialised value(s)
+==8308==    at 0x401BCA: length_PIDDeque (execute.c:37)
+==8308==    by 0x401E96: apply_PIDDeque (execute.c:37)
+==8308==    by 0x401A3F: destroy_PIDDeque (execute.c:37)
+==8308==    by 0x403B15: _destroyJob (execute.c:68)
+==8308==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8308==    by 0x4044FA: create_process (execute.c:529)
+==8308==    by 0x404717: run_script (execute.c:576)
+==8308==    by 0x401570: main (quash.c:132)
+==8308==  Uninitialised value was created by a stack allocation
+==8308==    at 0x404309: create_process (execute.c:466)
+==8308== 
+==8308== Use of uninitialised value of size 8
+==8308==    at 0x401ED8: apply_PIDDeque (execute.c:37)
+==8308==    by 0x401A3F: destroy_PIDDeque (execute.c:37)
+==8308==    by 0x403B15: _destroyJob (execute.c:68)
+==8308==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8308==    by 0x4044FA: create_process (execute.c:529)
+==8308==    by 0x404717: run_script (execute.c:576)
+==8308==    by 0x401570: main (quash.c:132)
+==8308==  Uninitialised value was created by a stack allocation
+==8308==    at 0x404309: create_process (execute.c:466)
+==8308== 
+==8308== Invalid read of size 4
+==8308==    at 0x401ED8: apply_PIDDeque (execute.c:37)
+==8308==    by 0x401A3F: destroy_PIDDeque (execute.c:37)
+==8308==    by 0x403B15: _destroyJob (execute.c:68)
+==8308==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8308==    by 0x4044FA: create_process (execute.c:529)
+==8308==    by 0x404717: run_script (execute.c:576)
+==8308==    by 0x401570: main (quash.c:132)
+==8308==  Address 0xffbfffe81 is not stack'd, malloc'd or (recently) free'd
+==8308== 
+==8308== 
+==8308== Process terminating with default action of signal 11 (SIGSEGV)
+==8308==  Access not within mapped region at address 0xFFBFFFE81
+==8308==    at 0x401ED8: apply_PIDDeque (execute.c:37)
+==8308==    by 0x401A3F: destroy_PIDDeque (execute.c:37)
+==8308==    by 0x403B15: _destroyJob (execute.c:68)
+==8308==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8308==    by 0x4044FA: create_process (execute.c:529)
+==8308==    by 0x404717: run_script (execute.c:576)
+==8308==    by 0x401570: main (quash.c:132)
+==8308==  If you believe this happened as a result of a stack
+==8308==  overflow in your program's main thread (unlikely but
+==8308==  possible), you can try to increase the size of the
+==8308==  main thread stack using the --main-stacksize= flag.
+==8308==  The main thread stack size used in this run was 8388608.
+==8311== Conditional jump or move depends on uninitialised value(s)
+==8311==    at 0x403AFC: _destroyJob (execute.c:64)
+==8311==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8311==    by 0x4044FA: create_process (execute.c:529)
+==8311==    by 0x404717: run_script (execute.c:576)
+==8311==    by 0x401570: main (quash.c:132)
+==8311==  Uninitialised value was created by a stack allocation
+==8311==    at 0x404309: create_process (execute.c:466)
+==8311== 
+==8311== Conditional jump or move depends on uninitialised value(s)
+==8311==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8311==    by 0x403B09: _destroyJob (execute.c:66)
+==8311==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8311==    by 0x4044FA: create_process (execute.c:529)
+==8311==    by 0x404717: run_script (execute.c:576)
+==8311==    by 0x401570: main (quash.c:132)
+==8311==  Uninitialised value was created by a stack allocation
+==8311==    at 0x404309: create_process (execute.c:466)
+==8311== 
+==8311== Invalid free() / delete / delete[] / realloc()
+==8311==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8311==    by 0x403B09: _destroyJob (execute.c:66)
+==8311==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8311==    by 0x4044FA: create_process (execute.c:529)
+==8311==    by 0x404717: run_script (execute.c:576)
+==8311==    by 0x401570: main (quash.c:132)
+==8311==  Address 0x100000005309d0c is not stack'd, malloc'd or (recently) free'd
+==8311== 
+==8311== Conditional jump or move depends on uninitialised value(s)
+==8311==    at 0x401A1A: destroy_PIDDeque (execute.c:37)
+==8311==    by 0x403B15: _destroyJob (execute.c:68)
+==8311==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8311==    by 0x4044FA: create_process (execute.c:529)
+==8311==    by 0x404717: run_script (execute.c:576)
+==8311==    by 0x401570: main (quash.c:132)
+==8311==  Uninitialised value was created by a stack allocation
+==8311==    at 0x404309: create_process (execute.c:466)
+==8311== 
+==8311== Conditional jump or move depends on uninitialised value(s)
+==8311==    at 0x401A4A: destroy_PIDDeque (execute.c:37)
+==8311==    by 0x403B15: _destroyJob (execute.c:68)
+==8311==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8311==    by 0x4044FA: create_process (execute.c:529)
+==8311==    by 0x404717: run_script (execute.c:576)
+==8311==    by 0x401570: main (quash.c:132)
+==8311==  Uninitialised value was created by a stack allocation
+==8311==    at 0x404309: create_process (execute.c:466)
+==8311== 
+==8311== Conditional jump or move depends on uninitialised value(s)
+==8311==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8311==    by 0x401A5A: destroy_PIDDeque (execute.c:37)
+==8311==    by 0x403B15: _destroyJob (execute.c:68)
+==8311==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8311==    by 0x4044FA: create_process (execute.c:529)
+==8311==    by 0x404717: run_script (execute.c:576)
+==8311==    by 0x401570: main (quash.c:132)
+==8311==  Uninitialised value was created by a stack allocation
+==8311==    at 0x404309: create_process (execute.c:466)
+==8311== 
+==8311== Invalid free() / delete / delete[] / realloc()
+==8311==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8311==    by 0x401A5A: destroy_PIDDeque (execute.c:37)
+==8311==    by 0x403B15: _destroyJob (execute.c:68)
+==8311==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8311==    by 0x4044FA: create_process (execute.c:529)
+==8311==    by 0x404717: run_script (execute.c:576)
+==8311==    by 0x401570: main (quash.c:132)
+==8311==  Address 0x1 is not stack'd, malloc'd or (recently) free'd
+==8311== 
+==8312== Conditional jump or move depends on uninitialised value(s)
+==8312==    at 0x403AFC: _destroyJob (execute.c:64)
+==8312==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8312==    by 0x4044FA: create_process (execute.c:529)
+==8312==    by 0x404717: run_script (execute.c:576)
+==8312==    by 0x401570: main (quash.c:132)
+==8312==  Uninitialised value was created by a stack allocation
+==8312==    at 0x404309: create_process (execute.c:466)
+==8312== 
+==8312== Conditional jump or move depends on uninitialised value(s)
+==8312==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8312==    by 0x403B09: _destroyJob (execute.c:66)
+==8312==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8312==    by 0x4044FA: create_process (execute.c:529)
+==8312==    by 0x404717: run_script (execute.c:576)
+==8312==    by 0x401570: main (quash.c:132)
+==8312==  Uninitialised value was created by a stack allocation
+==8312==    at 0x404309: create_process (execute.c:466)
+==8312== 
+==8312== Invalid free() / delete / delete[] / realloc()
+==8312==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8312==    by 0x403B09: _destroyJob (execute.c:66)
+==8312==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8312==    by 0x4044FA: create_process (execute.c:529)
+==8312==    by 0x404717: run_script (execute.c:576)
+==8312==    by 0x401570: main (quash.c:132)
+==8312==  Address 0x100000005309d6f is not stack'd, malloc'd or (recently) free'd
+==8312== 
+==8312== Invalid free() / delete / delete[] / realloc()
+==8312==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8312==    by 0x401A5A: destroy_PIDDeque (execute.c:37)
+==8312==    by 0x403B15: _destroyJob (execute.c:68)
+==8312==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8312==    by 0x4044FA: create_process (execute.c:529)
+==8312==    by 0x404717: run_script (execute.c:576)
+==8312==    by 0x401570: main (quash.c:132)
+==8312==  Address 0x300010000 is not stack'd, malloc'd or (recently) free'd
+==8312== 
+==8313== Conditional jump or move depends on uninitialised value(s)
+==8313==    at 0x403AFC: _destroyJob (execute.c:64)
+==8313==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8313==    by 0x4044FA: create_process (execute.c:529)
+==8313==    by 0x404717: run_script (execute.c:576)
+==8313==    by 0x401570: main (quash.c:132)
+==8313==  Uninitialised value was created by a stack allocation
+==8313==    at 0x404309: create_process (execute.c:466)
+==8313== 
+==8313== Conditional jump or move depends on uninitialised value(s)
+==8313==    at 0x4C2EDA1: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8313==    by 0x403B09: _destroyJob (execute.c:66)
+==8313==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8313==    by 0x4044FA: create_process (execute.c:529)
+==8313==    by 0x404717: run_script (execute.c:576)
+==8313==    by 0x401570: main (quash.c:132)
+==8313==  Uninitialised value was created by a stack allocation
+==8313==    at 0x404309: create_process (execute.c:466)
+==8313== 
+==8313== Invalid free() / delete / delete[] / realloc()
+==8313==    at 0x4C2EDEB: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8313==    by 0x403B09: _destroyJob (execute.c:66)
+==8313==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8313==    by 0x4044FA: create_process (execute.c:529)
+==8313==    by 0x404717: run_script (execute.c:576)
+==8313==    by 0x401570: main (quash.c:132)
+==8313==  Address 0x530b83c is 28 bytes inside a block of size 1,024 alloc'd
+==8313==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8313==    by 0x40597E: __initialize_memory_pool (memory_pool.c:44)
+==8313==    by 0x405B24: initialize_memory_pool (memory_pool.c:89)
+==8313==    by 0x40154F: main (quash.c:128)
+==8313== 
+==8313== Conditional jump or move depends on uninitialised value(s)
+==8313==    at 0x401A1A: destroy_PIDDeque (execute.c:37)
+==8313==    by 0x403B15: _destroyJob (execute.c:68)
+==8313==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8313==    by 0x4044FA: create_process (execute.c:529)
+==8313==    by 0x404717: run_script (execute.c:576)
+==8313==    by 0x401570: main (quash.c:132)
+==8313==  Uninitialised value was created by a stack allocation
+==8313==    at 0x404309: create_process (execute.c:466)
+==8313== 
+==8313== Conditional jump or move depends on uninitialised value(s)
+==8313==    at 0x401E70: apply_PIDDeque (execute.c:37)
+==8313==    by 0x401A3F: destroy_PIDDeque (execute.c:37)
+==8313==    by 0x403B15: _destroyJob (execute.c:68)
+==8313==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8313==    by 0x4044FA: create_process (execute.c:529)
+==8313==    by 0x404717: run_script (execute.c:576)
+==8313==    by 0x401570: main (quash.c:132)
+==8313==  Uninitialised value was created by a stack allocation
+==8313==    at 0x404309: create_process (execute.c:466)
+==8313== 
+==8313== Conditional jump or move depends on uninitialised value(s)
+==8313==    at 0x401BCA: length_PIDDeque (execute.c:37)
+==8313==    by 0x401E96: apply_PIDDeque (execute.c:37)
+==8313==    by 0x401A3F: destroy_PIDDeque (execute.c:37)
+==8313==    by 0x403B15: _destroyJob (execute.c:68)
+==8313==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8313==    by 0x4044FA: create_process (execute.c:529)
+==8313==    by 0x404717: run_script (execute.c:576)
+==8313==    by 0x401570: main (quash.c:132)
+==8313==  Uninitialised value was created by a stack allocation
+==8313==    at 0x404309: create_process (execute.c:466)
+==8313== 
+==8313== Use of uninitialised value of size 8
+==8313==    at 0x401ED8: apply_PIDDeque (execute.c:37)
+==8313==    by 0x401A3F: destroy_PIDDeque (execute.c:37)
+==8313==    by 0x403B15: _destroyJob (execute.c:68)
+==8313==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8313==    by 0x4044FA: create_process (execute.c:529)
+==8313==    by 0x404717: run_script (execute.c:576)
+==8313==    by 0x401570: main (quash.c:132)
+==8313==  Uninitialised value was created by a stack allocation
+==8313==    at 0x404309: create_process (execute.c:466)
+==8313== 
+==8313== Invalid read of size 4
+==8313==    at 0x401ED8: apply_PIDDeque (execute.c:37)
+==8313==    by 0x401A3F: destroy_PIDDeque (execute.c:37)
+==8313==    by 0x403B15: _destroyJob (execute.c:68)
+==8313==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8313==    by 0x4044FA: create_process (execute.c:529)
+==8313==    by 0x404717: run_script (execute.c:576)
+==8313==    by 0x401570: main (quash.c:132)
+==8313==  Address 0x3fbfffe80 is not stack'd, malloc'd or (recently) free'd
+==8313== 
+==8313== 
+==8313== Process terminating with default action of signal 11 (SIGSEGV)
+==8313==  Access not within mapped region at address 0x3FBFFFE80
+==8313==    at 0x401ED8: apply_PIDDeque (execute.c:37)
+==8313==    by 0x401A3F: destroy_PIDDeque (execute.c:37)
+==8313==    by 0x403B15: _destroyJob (execute.c:68)
+==8313==    by 0x403BCB: _destroyEnvironment (execute.c:90)
+==8313==    by 0x4044FA: create_process (execute.c:529)
+==8313==    by 0x404717: run_script (execute.c:576)
+==8313==    by 0x401570: main (quash.c:132)
+==8313==  If you believe this happened as a result of a stack
+==8313==  overflow in your program's main thread (unlikely but
+==8313==  possible), you can try to increase the size of the
+==8313==  main thread stack using the --main-stacksize= flag.
+==8313==  The main thread stack size used in this run was 8388608.
+==8308== 
+==8308== HEAP SUMMARY:
+==8308==     in use at exit: 19,937 bytes in 9 blocks
+==8308==   total heap usage: 25 allocs, 17 frees, 1,074,234 bytes allocated
+==8308== 
+==8308== LEAK SUMMARY:
+==8308==    definitely lost: 0 bytes in 0 blocks
+==8308==    indirectly lost: 0 bytes in 0 blocks
+==8308==      possibly lost: 0 bytes in 0 blocks
+==8308==    still reachable: 19,937 bytes in 9 blocks
+==8308==         suppressed: 0 bytes in 0 blocks
+==8308== Reachable blocks (those to which a pointer was found) are not shown.
+==8308== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==8308== 
+==8308== For counts of detected and suppressed errors, rerun with: -v
+==8308== ERROR SUMMARY: 8 errors from 8 contexts (suppressed: 0 from 0)
+==8313== 
+==8313== HEAP SUMMARY:
+==8313==     in use at exit: 17,810 bytes in 8 blocks
+==8313==   total heap usage: 37 allocs, 30 frees, 1,078,186 bytes allocated
+==8313== 
+==8313== LEAK SUMMARY:
+==8313==    definitely lost: 0 bytes in 0 blocks
+==8313==    indirectly lost: 0 bytes in 0 blocks
+==8313==      possibly lost: 0 bytes in 0 blocks
+==8313==    still reachable: 17,810 bytes in 8 blocks
+==8313==         suppressed: 0 bytes in 0 blocks
+==8313== Reachable blocks (those to which a pointer was found) are not shown.
+==8313== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==8313== 
+==8313== For counts of detected and suppressed errors, rerun with: -v
+==8313== ERROR SUMMARY: 8 errors from 8 contexts (suppressed: 0 from 0)
+==8171== 
+==8171== HEAP SUMMARY:
+==8171==     in use at exit: 56 bytes in 1 blocks
+==8171==   total heap usage: 38 allocs, 37 frees, 1,078,194 bytes allocated
+==8171== 
+==8171== LEAK SUMMARY:
+==8171==    definitely lost: 0 bytes in 0 blocks
+==8171==    indirectly lost: 0 bytes in 0 blocks
+==8171==      possibly lost: 0 bytes in 0 blocks
+==8171==    still reachable: 56 bytes in 1 blocks
+==8171==         suppressed: 0 bytes in 0 blocks
+==8171== Reachable blocks (those to which a pointer was found) are not shown.
+==8171== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==8171== 
+==8171== For counts of detected and suppressed errors, rerun with: -v
+==8171== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
