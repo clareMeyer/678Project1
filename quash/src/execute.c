@@ -586,7 +586,7 @@ void run_script(CommandHolder* holders) {
     while (!is_empty_PIDDeque(&envr.job.pid_list)) {
         pid_t current_process = pop_front_PIDDeque(&envr.job.pid_list);
         int status=0;
-        waitpid(current_process, &status, WNOHANG);
+        waitpid(current_process, &status, 0);
     }
     // same as destroy environment
     free(envr.job.commandline);
